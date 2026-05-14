@@ -669,7 +669,7 @@
       <div class="office-card"><div class="office-flag">🇮🇳</div><div class="office-country">INDIA</div><div class="office-address">India Office<br>In-Person Consultations Available</div></div>
     </div>
   </div>
-  <form class="contact-form" action="https://formspree.io/f/xqenoydz" method="POST">
+  <form class="contact-form" action="https://formspree.io/f/xqenoydz" method="POST onsubmit="submitForm(event)">
     <div class="form-title">Book a Free Consultation</div>
     <div class="form-row">
       <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" name="first_name" placeholder="Your first name"></div>
@@ -748,7 +748,28 @@ document.getElementById('menuBtn').addEventListener('click', () => {
   btn.children[2].style.transform = isOpen ? 'rotate(-45deg) translate(5px, -5px)' : '';
   document.body.style.overflow = isOpen ? 'hidden' : '';
 });
-
+  
+async function submitForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  const response = await fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  });
+  if (response.ok) {
+    form.reset();
+    btn.textContent = '✅ Sent! We will be in touch within 24 hours.';
+    btn.style.background = '#0C447C';
+  } else {
+    btn.textContent = 'Something went wrong. Please try again.';
+    btn.disabled = false;
+  }
+}
+  
 function closeMobileNav() {
   document.getElementById('mobileNav').classList.remove('open');
   document.getElementById('menuBtn').children[0].style.transform = '';
