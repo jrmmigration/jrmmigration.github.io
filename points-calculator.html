@@ -309,6 +309,63 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-i
       </div>
     </div>
 
+    <!-- SKILLSELECT ROUNDS -->
+    <div style="background:#071e3d; border-radius:18px; padding:22px; margin-bottom:16px;">
+      <div style="font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:14px;">Latest SkillSelect Invitation Rounds</div>
+
+      <div style="background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.3); border-radius:10px; padding:12px 14px; margin-bottom:14px; font-size:12px; color:#fcd34d; line-height:1.6;">
+        ⚠️ <strong>Important:</strong> Invitation scores vary significantly by occupation. Some receive invites at 65 points, others require 90+. A score of 75 may be sufficient for some occupations but not others.
+      </div>
+
+      <table style="width:100%; border-collapse:collapse; font-size:12px;">
+        <thead>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+            <th style="text-align:left; padding:8px 6px; color:rgba(255,255,255,0.4); font-weight:600; letter-spacing:0.08em; font-size:11px;">ROUND DATE</th>
+            <th style="text-align:center; padding:8px 6px; color:rgba(255,255,255,0.4); font-weight:600; letter-spacing:0.08em; font-size:11px;">VISA</th>
+            <th style="text-align:center; padding:8px 6px; color:rgba(255,255,255,0.4); font-weight:600; letter-spacing:0.08em; font-size:11px;">LOWEST SCORE</th>
+            <th style="text-align:right; padding:8px 6px; color:rgba(255,255,255,0.4); font-weight:600; letter-spacing:0.08em; font-size:11px;">INVITATIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+            <td style="padding:8px 6px; color:white;">Apr 2026</td>
+            <td style="padding:8px 6px; color:#25c491; text-align:center; font-weight:600;">189</td>
+            <td style="padding:8px 6px; color:white; text-align:center; font-weight:700;">85</td>
+            <td style="padding:8px 6px; color:rgba(255,255,255,0.6); text-align:right;">1,426</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+            <td style="padding:8px 6px; color:white;">Apr 2026</td>
+            <td style="padding:8px 6px; color:#25c491; text-align:center; font-weight:600;">190</td>
+            <td style="padding:8px 6px; color:white; text-align:center; font-weight:700;">75</td>
+            <td style="padding:8px 6px; color:rgba(255,255,255,0.6); text-align:right;">2,184</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+            <td style="padding:8px 6px; color:white;">Apr 2026</td>
+            <td style="padding:8px 6px; color:#25c491; text-align:center; font-weight:600;">491</td>
+            <td style="padding:8px 6px; color:white; text-align:center; font-weight:700;">65</td>
+            <td style="padding:8px 6px; color:rgba(255,255,255,0.6); text-align:right;">3,012</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+            <td style="padding:8px 6px; color:white;">Mar 2026</td>
+            <td style="padding:8px 6px; color:#25c491; text-align:center; font-weight:600;">189</td>
+            <td style="padding:8px 6px; color:white; text-align:center; font-weight:700;">90</td>
+            <td style="padding:8px 6px; color:rgba(255,255,255,0.6); text-align:right;">1,208</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 6px; color:white;">Mar 2026</td>
+            <td style="padding:8px 6px; color:#25c491; text-align:center; font-weight:600;">190</td>
+            <td style="padding:8px 6px; color:white; text-align:center; font-weight:700;">80</td>
+            <td style="padding:8px 6px; color:rgba(255,255,255,0.6); text-align:right;">1,876</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:12px; display:flex; align-items:center; justify-content:space-between;">
+        <span style="font-size:11px; color:rgba(255,255,255,0.35);">Data from Department of Home Affairs</span>
+        <a href="https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/invitation-rounds" target="_blank" style="font-size:11px; color:#25c491; text-decoration:none; font-weight:600;">View all rounds →</a>
+      </div>
+    </div>
+
     <div class="cta-box">
       <h3>Want expert advice?</h3>
       <p>Our MARA Registered agent will review your full profile and map out the best pathway for you.</p>
@@ -367,9 +424,10 @@ function recalc() {
 
   // Status
   const statusEl = document.getElementById('score-status');
-  if (total < 65) { statusEl.className='score-status no'; statusEl.textContent='Below Minimum (65)'; }
-  else if (total < 75) { statusEl.className='score-status maybe'; statusEl.textContent='Meets Minimum — Competitive'; }
-  else if (total < 90) { statusEl.className='score-status yes'; statusEl.textContent='Strong Score!'; }
+  if (total < 65) { statusEl.className='score-status no'; statusEl.textContent='Not Eligible Yet — Need 65+'; }
+  else if (total < 75) { statusEl.className='score-status maybe'; statusEl.textContent='Eligible — Low Competition'; }
+  else if (total < 85) { statusEl.className='score-status yes'; statusEl.textContent='Good Score'; }
+  else if (total < 90) { statusEl.className='score-status great'; statusEl.textContent='Competitive Score'; }
   else { statusEl.className='score-status great'; statusEl.textContent='Excellent Score! 🎉'; }
 
   // Breakdown
