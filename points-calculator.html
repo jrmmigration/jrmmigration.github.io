@@ -425,7 +425,7 @@ function recalc() {
   // Status
   const statusEl = document.getElementById('score-status');
   if (total < 65) { statusEl.className='score-status no'; statusEl.textContent='Not Eligible Yet — Need 65+'; }
-  else if (total < 75) { statusEl.className='score-status maybe'; statusEl.textContent='Eligible — Low Competition'; }
+  else if (total < 75) { statusEl.className='score-status maybe'; statusEl.textContent='Eligible — High Competition'; }
   else if (total < 85) { statusEl.className='score-status yes'; statusEl.textContent='Good Score'; }
   else if (total < 90) { statusEl.className='score-status great'; statusEl.textContent='Competitive Score'; }
   else { statusEl.className='score-status great'; statusEl.textContent='Excellent Score! 🎉'; }
