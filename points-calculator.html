@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Australian Points Calculator — JRM Migration</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:#FAF7F2; color:#1a1a2e; }
+
+/* NAV */
+nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:16px 60px; background:rgba(250,247,242,0.97); backdrop-filter:blur(16px); border-bottom:1px solid rgba(12,68,124,0.08); }
+.nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.nav-name { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#0C447C; }
+.nav-tag { font-size:9px; color:#1D9E75; letter-spacing:0.15em; text-transform:uppercase; }
+.back-btn { display:inline-flex; align-items:center; gap:8px; color:#0C447C; font-size:13px; font-weight:600; text-decoration:none; padding:9px 20px; border:2px solid #0C447C; border-radius:50px; transition:all 0.2s; }
+.back-btn:hover { background:#0C447C; color:white; }
+
+/* HERO */
+.hero { background:#071e3d; padding:110px 60px 60px; text-align:center; }
+.hero-eyebrow { font-size:11px; font-weight:600; color:#25c491; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.hero-eyebrow span { display:inline-block; width:24px; height:2px; background:#1D9E75; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:clamp(32px,4vw,54px); font-weight:900; color:white; line-height:1.1; margin-bottom:14px; }
+.hero h1 em { color:#1D9E75; font-style:italic; }
+.hero p { font-size:16px; color:rgba(255,255,255,0.65); max-width:560px; margin:0 auto; line-height:1.7; }
+
+/* VISA SELECTOR */
+.visa-selector { display:flex; justify-content:center; gap:16px; padding:32px 60px 0; flex-wrap:wrap; }
+.visa-btn { padding:12px 28px; border-radius:50px; font-size:14px; font-weight:600; cursor:pointer; border:2px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.06); color:white; transition:all 0.25s; }
+.visa-btn:hover { border-color:#1D9E75; background:rgba(29,158,117,0.15); }
+.visa-btn.active { background:#1D9E75; border-color:#1D9E75; color:white; }
+.visa-desc { font-size:12px; display:block; font-weight:400; opacity:0.8; margin-top:3px; }
+
+/* MAIN LAYOUT */
+.main { max-width:1100px; margin:0 auto; padding:48px 24px 80px; display:grid; grid-template-columns:1fr 380px; gap:28px; align-items:start; }
+
+/* CALCULATOR CARD */
+.calc-card { background:white; border-radius:24px; box-shadow:0 4px 40px rgba(12,68,124,0.1); overflow:hidden; }
+.calc-section { padding:28px 32px; border-bottom:1px solid #f0f4f8; }
+.calc-section:last-child { border-bottom:none; }
+.calc-section-title { font-size:13px; font-weight:700; color:#0C447C; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:20px; display:flex; align-items:center; gap:10px; }
+.calc-section-title::before { content:''; width:20px; height:3px; background:#1D9E75; border-radius:2px; }
+
+/* OPTION GROUPS */
+.option-group { margin-bottom:20px; }
+.option-label { font-size:13px; font-weight:600; color:#374151; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; }
+.option-pts { font-size:11px; color:#1D9E75; font-weight:700; background:#EDF7F2; padding:2px 8px; border-radius:20px; }
+.options { display:flex; flex-direction:column; gap:6px; }
+.option { display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:12px; border:1.5px solid #e5e7eb; cursor:pointer; transition:all 0.2s; }
+.option:hover { border-color:#1D9E75; background:#F0FBF7; }
+.option.selected { border-color:#1D9E75; background:#EDF7F2; }
+.option input[type="radio"] { display:none; }
+.option-radio { width:18px; height:18px; border-radius:50%; border:2px solid #d1d5db; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; }
+.option.selected .option-radio { border-color:#1D9E75; background:#1D9E75; }
+.option.selected .option-radio::after { content:''; width:6px; height:6px; border-radius:50%; background:white; }
+.option-text { flex:1; font-size:13px; color:#374151; line-height:1.4; }
+.option-score { font-size:12px; font-weight:700; color:#9ca3af; min-width:40px; text-align:right; }
+.option.selected .option-score { color:#1D9E75; }
+
+/* RESULT PANEL */
+.result-panel { position:sticky; top:90px; }
+.score-card { background:#071e3d; border-radius:24px; padding:32px; color:white; margin-bottom:16px; }
+.score-label { font-size:11px; font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; }
+.score-number { font-family:'Playfair Display',serif; font-size:80px; font-weight:900; color:white; line-height:1; margin-bottom:4px; }
+.score-number span { font-size:28px; color:rgba(255,255,255,0.4); }
+.score-status { font-size:14px; font-weight:600; padding:8px 16px; border-radius:50px; display:inline-block; margin-bottom:20px; }
+.score-status.no { background:rgba(239,68,68,0.2); color:#fca5a5; }
+.score-status.maybe { background:rgba(245,158,11,0.2); color:#fcd34d; }
+.score-status.yes { background:rgba(29,158,117,0.2); color:#6ee7b7; }
+.score-status.great { background:rgba(29,158,117,0.4); color:#34d399; }
+
+/* Score breakdown */
+.breakdown { background:rgba(255,255,255,0.05); border-radius:14px; padding:16px; margin-bottom:20px; }
+.breakdown-row { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:12px; }
+.breakdown-row:last-child { border-bottom:none; }
+.breakdown-label { color:rgba(255,255,255,0.55); }
+.breakdown-val { font-weight:700; color:white; }
+.breakdown-val.zero { color:rgba(255,255,255,0.25); }
+
+/* Progress bar */
+.progress-wrap { margin-bottom:20px; }
+.progress-label { display:flex; justify-content:space-between; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:6px; }
+.progress-bar { background:rgba(255,255,255,0.1); border-radius:10px; height:8px; overflow:hidden; }
+.progress-fill { height:100%; border-radius:10px; background:linear-gradient(90deg, #1D9E75, #25c491); transition:width 0.4s ease; }
+
+/* Visa comparison */
+.visa-compare { background:rgba(255,255,255,0.05); border-radius:14px; padding:16px; margin-bottom:20px; }
+.visa-compare-title { font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px; }
+.visa-row { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.visa-row:last-child { border-bottom:none; }
+.visa-name { font-size:13px; font-weight:600; color:white; }
+.visa-threshold { font-size:11px; color:rgba(255,255,255,0.4); }
+.visa-status-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.dot-red { background:#ef4444; }
+.dot-amber { background:#f59e0b; }
+.dot-green { background:#1D9E75; }
+
+/* CTA */
+.cta-box { background:#1D9E75; border-radius:18px; padding:24px; text-align:center; }
+.cta-box h3 { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:white; margin-bottom:8px; }
+.cta-box p { font-size:13px; color:rgba(255,255,255,0.85); margin-bottom:18px; line-height:1.5; }
+.cta-box a { display:block; background:white; color:#1D9E75; padding:12px; border-radius:12px; font-size:14px; font-weight:700; text-decoration:none; transition:all 0.2s; }
+.cta-box a:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(0,0,0,0.15); }
+.cta-note { font-size:11px; color:rgba(255,255,255,0.6); margin-top:10px; }
+
+/* Disclaimer */
+.disclaimer { background:#fff8e1; border-radius:14px; padding:16px 20px; margin-top:16px; font-size:12px; color:#7a5c00; line-height:1.6; border-left:4px solid #f59e0b; }
+
+@media (max-width:900px) {
+  nav { padding:14px 20px; }
+  .hero { padding:90px 20px 40px; }
+  .visa-selector { padding:24px 20px 0; gap:10px; }
+  .visa-btn { padding:10px 18px; font-size:13px; }
+  .main { grid-template-columns:1fr; padding:32px 16px 60px; }
+  .result-panel { position:static; }
+  .calc-section { padding:22px 20px; }
+  .score-number { font-size:64px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="36" fill="none" stroke="#0C447C" stroke-width="3.5"/>
+      <circle cx="40" cy="40" r="26" fill="none" stroke="#378ADD" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <polygon points="40,8 45,40 40,33 35,40" fill="#0C447C"/>
+      <polygon points="40,72 45,40 40,47 35,40" fill="#1D9E75"/>
+      <circle cx="40" cy="40" r="5" fill="#0C447C"/>
+    </svg>
+    <div>
+      <div class="nav-name">JRM Migration</div>
+      <div class="nav-tag">Your Journey, Our Responsibility</div>
+    </div>
+  </a>
+  <a href="index.html" class="back-btn">← Back to Home</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow"><span></span>Free Tool<span></span></div>
+  <h1>Australian Points <em>Calculator</em></h1>
+  <p>Calculate your points score for skilled migration visas instantly. Based on the official Department of Home Affairs points test.</p>
+  <div class="visa-selector">
+    <button class="visa-btn active" onclick="setVisa(189, this)">Subclass 189<span class="visa-desc">Skilled Independent</span></button>
+    <button class="visa-btn" onclick="setVisa(190, this)">Subclass 190<span class="visa-desc">Skilled Nominated</span></button>
+    <button class="visa-btn" onclick="setVisa(491, this)">Subclass 491<span class="visa-desc">Regional Sponsored</span></button>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- CALCULATOR -->
+  <div class="calc-card">
+
+    <!-- AGE -->
+    <div class="calc-section">
+      <div class="calc-section-title">Age</div>
+      <div class="options" id="age-opts">
+        <label class="option selected" onclick="select('age',0,this)"><span class="option-radio"></span><span class="option-text">18 – 24 years</span><span class="option-score">25 pts</span></label>
+        <label class="option" onclick="select('age',0,this)"><span class="option-radio"></span><span class="option-text">25 – 32 years</span><span class="option-score">30 pts</span></label>
+        <label class="option" onclick="select('age',0,this)"><span class="option-radio"></span><span class="option-text">33 – 39 years</span><span class="option-score">25 pts</span></label>
+        <label class="option" onclick="select('age',0,this)"><span class="option-radio"></span><span class="option-text">40 – 44 years</span><span class="option-score">15 pts</span></label>
+        <label class="option" onclick="select('age',0,this)"><span class="option-radio"></span><span class="option-text">45 years and over</span><span class="option-score">0 pts</span></label>
+      </div>
+    </div>
+
+    <!-- ENGLISH -->
+    <div class="calc-section">
+      <div class="calc-section-title">English Language Ability</div>
+      <div class="options">
+        <label class="option" onclick="select('english',0,this)"><span class="option-radio"></span><span class="option-text">Competent English — IELTS 6.0 / PTE 50</span><span class="option-score">0 pts</span></label>
+        <label class="option" onclick="select('english',10,this)"><span class="option-radio"></span><span class="option-text">Proficient English — IELTS 7.0 / PTE 65</span><span class="option-score">10 pts</span></label>
+        <label class="option" onclick="select('english',20,this)"><span class="option-radio"></span><span class="option-text">Superior English — IELTS 8.0 / PTE 79</span><span class="option-score">20 pts</span></label>
+      </div>
+    </div>
+
+    <!-- OVERSEAS EMPLOYMENT -->
+    <div class="calc-section">
+      <div class="calc-section-title">Overseas Skilled Employment (last 10 years)</div>
+      <div class="options">
+        <label class="option" onclick="select('overseas',0,this)"><span class="option-radio"></span><span class="option-text">Less than 3 years</span><span class="option-score">0 pts</span></label>
+        <label class="option" onclick="select('overseas',5,this)"><span class="option-radio"></span><span class="option-text">3 – 4 years</span><span class="option-score">5 pts</span></label>
+        <label class="option" onclick="select('overseas',10,this)"><span class="option-radio"></span><span class="option-text">5 – 7 years</span><span class="option-score">10 pts</span></label>
+        <label class="option" onclick="select('overseas',15,this)"><span class="option-radio"></span><span class="option-text">8 – 10 years</span><span class="option-score">15 pts</span></label>
+      </div>
+    </div>
+
+    <!-- AUSTRALIAN EMPLOYMENT -->
+    <div class="calc-section">
+      <div class="calc-section-title">Australian Skilled Employment (last 10 years)</div>
+      <div class="options">
+        <label class="option" onclick="select('auswork',0,this)"><span class="option-radio"></span><span class="option-text">None / Less than 1 year</span><span class="option-score">0 pts</span></label>
+        <label class="option" onclick="select('auswork',5,this)"><span class="option-radio"></span><span class="option-text">1 – 2 years</span><span class="option-score">5 pts</span></label>
+        <label class="option" onclick="select('auswork',10,this)"><span class="option-radio"></span><span class="option-text">3 – 4 years</span><span class="option-score">10 pts</span></label>
+        <label class="option" onclick="select('auswork',15,this)"><span class="option-radio"></span><span class="option-text">5 – 7 years</span><span class="option-score">15 pts</span></label>
+        <label class="option" onclick="select('auswork',20,this)"><span class="option-radio"></span><span class="option-text">8 – 10 years</span><span class="option-score">20 pts</span></label>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="calc-section">
+      <div class="calc-section-title">Educational Qualifications</div>
+      <div class="options">
+        <label class="option" onclick="select('education',0,this)"><span class="option-radio"></span><span class="option-text">No qualification / High school</span><span class="option-score">0 pts</span></label>
+        <label class="option" onclick="select('education',10,this)"><span class="option-radio"></span><span class="option-text">Diploma or trade qualification</span><span class="option-score">10 pts</span></label>
+        <label class="option" onclick="select('education',15,this)"><span class="option-radio"></span><span class="option-text">Bachelor degree</span><span class="option-score">15 pts</span></label>
+        <label class="option" onclick="select('education',15,this)"><span class="option-radio"></span><span class="option-text">Masters degree</span><span class="option-score">15 pts</span></label>
+        <label class="option" onclick="select('education',20,this)"><span class="option-radio"></span><span class="option-text">Doctorate (PhD)</span><span class="option-score">20 pts</span></label>
+      </div>
+    </div>
+
+    <!-- BONUS POINTS -->
+    <div class="calc-section">
+      <div class="calc-section-title">Bonus Points</div>
+
+      <div class="option-group">
+        <div class="option-label">Australian Study Requirement <span class="option-pts">+5 pts</span></div>
+        <div class="options">
+          <label class="option" onclick="select('ausstudy',0,this)"><span class="option-radio"></span><span class="option-text">No — did not study in Australia</span><span class="option-score">0 pts</span></label>
+          <label class="option" onclick="select('ausstudy',5,this)"><span class="option-radio"></span><span class="option-text">Yes — at least 2 years in an Australian institution</span><span class="option-score">5 pts</span></label>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <div class="option-label">Specialist Education Qualification (STEM) <span class="option-pts">+10 pts</span></div>
+        <div class="options">
+          <label class="option" onclick="select('stem',0,this)"><span class="option-radio"></span><span class="option-text">No STEM Masters or Doctorate</span><span class="option-score">0 pts</span></label>
+          <label class="option" onclick="select('stem',10,this)"><span class="option-radio"></span><span class="option-text">Yes — Masters or Doctorate with STEM major</span><span class="option-score">10 pts</span></label>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <div class="option-label">Credentialled Community Language <span class="option-pts">+5 pts</span></div>
+        <div class="options">
+          <label class="option" onclick="select('language',0,this)"><span class="option-radio"></span><span class="option-text">No accredited community language</span><span class="option-score">0 pts</span></label>
+          <label class="option" onclick="select('language',5,this)"><span class="option-radio"></span><span class="option-text">Yes — NAATI credentialled community language</span><span class="option-score">5 pts</span></label>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <div class="option-label">Study in Regional Australia <span class="option-pts">+5 pts</span></div>
+        <div class="options">
+          <label class="option" onclick="select('regional',0,this)"><span class="option-radio"></span><span class="option-text">No — studied in a major city</span><span class="option-score">0 pts</span></label>
+          <label class="option" onclick="select('regional',5,this)"><span class="option-radio"></span><span class="option-text">Yes — studied in regional or low population area</span><span class="option-score">5 pts</span></label>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <div class="option-label">Professional Year in Australia <span class="option-pts">+5 pts</span></div>
+        <div class="options">
+          <label class="option" onclick="select('profyear',0,this)"><span class="option-radio"></span><span class="option-text">No professional year</span><span class="option-score">0 pts</span></label>
+          <label class="option" onclick="select('profyear',5,this)"><span class="option-radio"></span><span class="option-text">Yes — completed professional year in Australia</span><span class="option-score">5 pts</span></label>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <div class="option-label">Partner Status <span class="option-pts">up to +10 pts</span></div>
+        <div class="options">
+          <label class="option" onclick="select('partner',10,this)"><span class="option-radio"></span><span class="option-text">Single — no partner / de facto</span><span class="option-score">10 pts</span></label>
+          <label class="option" onclick="select('partner',5,this)"><span class="option-radio"></span><span class="option-text">Partner has competent English + skills assessment</span><span class="option-score">5 pts</span></label>
+          <label class="option" onclick="select('partner',10,this)"><span class="option-radio"></span><span class="option-text">Partner is Australian citizen or permanent resident</span><span class="option-score">10 pts</span></label>
+          <label class="option" onclick="select('partner',0,this)"><span class="option-radio"></span><span class="option-text">Partner does not meet above criteria</span><span class="option-score">0 pts</span></label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESULT PANEL -->
+  <div class="result-panel">
+    <div class="score-card">
+      <div class="score-label">Your Points Score</div>
+      <div class="score-number" id="score-display">25 <span>pts</span></div>
+      <div class="score-status no" id="score-status">Below Minimum</div>
+
+      <div class="progress-wrap">
+        <div class="progress-label"><span>0</span><span>65 minimum</span><span>100+</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:25%"></div></div>
+      </div>
+
+      <div class="breakdown" id="breakdown">
+        <div class="breakdown-row"><span class="breakdown-label">Age</span><span class="breakdown-val" id="b-age">25 pts</span></div>
+        <div class="breakdown-row"><span class="breakdown-label">English</span><span class="breakdown-val zero" id="b-english">0 pts</span></div>
+        <div class="breakdown-row"><span class="breakdown-label">Overseas work</span><span class="breakdown-val zero" id="b-overseas">0 pts</span></div>
+        <div class="breakdown-row"><span class="breakdown-label">Australian work</span><span class="breakdown-val zero" id="b-auswork">0 pts</span></div>
+        <div class="breakdown-row"><span class="breakdown-label">Education</span><span class="breakdown-val zero" id="b-education">0 pts</span></div>
+        <div class="breakdown-row"><span class="breakdown-label">Partner</span><span class="breakdown-val zero" id="b-partner">0 pts</span></div>
+        <div class="breakdown-row"><span class="breakdown-label">Bonus points</span><span class="breakdown-val zero" id="b-bonus">0 pts</span></div>
+        <div class="breakdown-row"><span class="breakdown-label">Visa nomination</span><span class="breakdown-val zero" id="b-visa">0 pts</span></div>
+      </div>
+
+      <div class="visa-compare">
+        <div class="visa-compare-title">Visa Eligibility</div>
+        <div class="visa-row">
+          <div><div class="visa-name">Subclass 189</div><div class="visa-threshold">Min. 65 pts • No sponsor needed</div></div>
+          <div class="visa-status-dot dot-red" id="dot-189"></div>
+        </div>
+        <div class="visa-row">
+          <div><div class="visa-name">Subclass 190</div><div class="visa-threshold">Min. 65 pts + State nomination (+5)</div></div>
+          <div class="visa-status-dot dot-red" id="dot-190"></div>
+        </div>
+        <div class="visa-row">
+          <div><div class="visa-name">Subclass 491</div><div class="visa-threshold">Min. 65 pts + Regional sponsor (+15)</div></div>
+          <div class="visa-status-dot dot-red" id="dot-491"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h3>Want expert advice?</h3>
+      <p>Our MARA Registered agent will review your full profile and map out the best pathway for you.</p>
+      <a href="index.html#contact">Book Free Consultation →</a>
+      <div class="cta-note">No obligation · Free 30 minutes · MARA Registered</div>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ <strong>Disclaimer:</strong> This calculator provides an estimate only. Actual scores may vary based on individual circumstances. Always consult a MARA Registered Migration Agent for professional advice.
+    </div>
+  </div>
+
+</div>
+
+<footer style="background:#040d1a; padding:28px 60px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+  <div>
+    <div style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:white;">JRM Migration Pty Ltd</div>
+    <div style="font-size:10px; color:#1D9E75; letter-spacing:0.14em; margin-top:4px;">YOUR JOURNEY, OUR RESPONSIBILITY</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.3); margin-top:6px;">MARA Registered Migration Agent · Australia</div>
+  </div>
+  <a href="index.html" style="color:rgba(255,255,255,0.5); font-size:13px; text-decoration:none;">← Back to main website</a>
+</footer>
+
+<script>
+// Points state
+const pts = { age:25, english:0, overseas:0, auswork:0, education:0, ausstudy:0, stem:0, language:0, regional:0, profyear:0, partner:0 };
+let currentVisa = 189;
+const visaBonus = { 189:0, 190:5, 491:15 };
+
+function select(category, value, el) {
+  // Deselect siblings
+  el.parentElement.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  pts[category] = value;
+  recalc();
+}
+
+function setVisa(visa, btn) {
+  document.querySelectorAll('.visa-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentVisa = visa;
+  recalc();
+}
+
+function recalc() {
+  const bonus = pts.ausstudy + pts.stem + pts.language + pts.regional + pts.profyear;
+  const base = pts.age + pts.english + pts.overseas + pts.auswork + pts.education + pts.partner + bonus;
+  const total = base + visaBonus[currentVisa];
+
+  // Update display
+  document.getElementById('score-display').innerHTML = total + ' <span>pts</span>';
+
+  // Progress bar (max 100 for display)
+  const pct = Math.min((total / 100) * 100, 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  // Status
+  const statusEl = document.getElementById('score-status');
+  if (total < 65) { statusEl.className='score-status no'; statusEl.textContent='Below Minimum (65)'; }
+  else if (total < 75) { statusEl.className='score-status maybe'; statusEl.textContent='Meets Minimum — Competitive'; }
+  else if (total < 90) { statusEl.className='score-status yes'; statusEl.textContent='Strong Score!'; }
+  else { statusEl.className='score-status great'; statusEl.textContent='Excellent Score! 🎉'; }
+
+  // Breakdown
+  const setB = (id, val) => {
+    const el = document.getElementById(id);
+    el.textContent = val + ' pts';
+    el.className = 'breakdown-val' + (val === 0 ? ' zero' : '');
+  };
+  setB('b-age', pts.age);
+  setB('b-english', pts.english);
+  setB('b-overseas', pts.overseas);
+  setB('b-auswork', pts.auswork);
+  setB('b-education', pts.education);
+  setB('b-partner', pts.partner);
+  setB('b-bonus', bonus);
+  setB('b-visa', visaBonus[currentVisa]);
+
+  // Visa dots
+  const dot = (id, score) => {
+    const el = document.getElementById(id);
+    el.className = 'visa-status-dot ' + (score >= 65 ? 'dot-green' : score >= 55 ? 'dot-amber' : 'dot-red');
+  };
+  dot('dot-189', base);
+  dot('dot-190', base + 5);
+  dot('dot-491', base + 15);
+}
+
+recalc();
+</script>
+</body>
+</html>
