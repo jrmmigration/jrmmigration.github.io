@@ -182,21 +182,22 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-i
       <div class="calc-section-title">Overseas Skilled Employment (last 10 years)</div>
       <div class="options">
         <label class="option" onclick="select('overseas',0,this)"><span class="option-radio"></span><span class="option-text">Less than 3 years</span><span class="option-score">0 pts</span></label>
-        <label class="option" onclick="select('overseas',5,this)"><span class="option-radio"></span><span class="option-text">3 – 4 years</span><span class="option-score">5 pts</span></label>
-        <label class="option" onclick="select('overseas',10,this)"><span class="option-radio"></span><span class="option-text">5 – 7 years</span><span class="option-score">10 pts</span></label>
-        <label class="option" onclick="select('overseas',15,this)"><span class="option-radio"></span><span class="option-text">8 – 10 years</span><span class="option-score">15 pts</span></label>
+        <label class="option" onclick="select('overseas',5,this)"><span class="option-radio"></span><span class="option-text">3 – less than 5 years</span><span class="option-score">5 pts</span></label>
+        <label class="option" onclick="select('overseas',10,this)"><span class="option-radio"></span><span class="option-text">5 – less than 8 years</span><span class="option-score">10 pts</span></label>
+        <label class="option" onclick="select('overseas',15,this)"><span class="option-radio"></span><span class="option-text">8 or more years</span><span class="option-score">15 pts</span></label>
       </div>
     </div>
 
     <!-- AUSTRALIAN EMPLOYMENT -->
     <div class="calc-section">
       <div class="calc-section-title">Australian Skilled Employment (last 10 years)</div>
+      <div style="font-size:11px; color:#f59e0b; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); border-radius:8px; padding:8px 12px; margin-bottom:14px;">⚠️ Combined overseas + Australian work experience is <strong>capped at 20 points</strong> total (official DHA rule)</div>
       <div class="options">
         <label class="option" onclick="select('auswork',0,this)"><span class="option-radio"></span><span class="option-text">None / Less than 1 year</span><span class="option-score">0 pts</span></label>
         <label class="option" onclick="select('auswork',5,this)"><span class="option-radio"></span><span class="option-text">1 – 2 years</span><span class="option-score">5 pts</span></label>
-        <label class="option" onclick="select('auswork',10,this)"><span class="option-radio"></span><span class="option-text">3 – 4 years</span><span class="option-score">10 pts</span></label>
-        <label class="option" onclick="select('auswork',15,this)"><span class="option-radio"></span><span class="option-text">5 – 7 years</span><span class="option-score">15 pts</span></label>
-        <label class="option" onclick="select('auswork',20,this)"><span class="option-radio"></span><span class="option-text">8 – 10 years</span><span class="option-score">20 pts</span></label>
+        <label class="option" onclick="select('auswork',10,this)"><span class="option-radio"></span><span class="option-text">3 – less than 5 years</span><span class="option-score">10 pts</span></label>
+        <label class="option" onclick="select('auswork',15,this)"><span class="option-radio"></span><span class="option-text">5 – less than 8 years</span><span class="option-score">15 pts</span></label>
+        <label class="option" onclick="select('auswork',20,this)"><span class="option-radio"></span><span class="option-text">8 or more years</span><span class="option-score">20 pts</span></label>
       </div>
     </div>
 
@@ -206,8 +207,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-i
       <div class="options">
         <label class="option" onclick="select('education',0,this)"><span class="option-radio"></span><span class="option-text">No qualification / High school</span><span class="option-score">0 pts</span></label>
         <label class="option" onclick="select('education',10,this)"><span class="option-radio"></span><span class="option-text">Diploma or trade qualification</span><span class="option-score">10 pts</span></label>
-        <label class="option" onclick="select('education',15,this)"><span class="option-radio"></span><span class="option-text">Bachelor degree</span><span class="option-score">15 pts</span></label>
-        <label class="option" onclick="select('education',15,this)"><span class="option-radio"></span><span class="option-text">Masters degree</span><span class="option-score">15 pts</span></label>
+        <label class="option" onclick="select('education',15,this)"><span class="option-radio"></span><span class="option-text">Bachelor degree (or higher — including Masters)</span><span class="option-score">15 pts</span></label>
         <label class="option" onclick="select('education',20,this)"><span class="option-radio"></span><span class="option-text">Doctorate (PhD)</span><span class="option-score">20 pts</span></label>
       </div>
     </div>
@@ -260,8 +260,9 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-i
         <div class="option-label">Partner Status <span class="option-pts">up to +10 pts</span></div>
         <div class="options">
           <label class="option" onclick="select('partner',10,this)"><span class="option-radio"></span><span class="option-text">Single — no partner / de facto</span><span class="option-score">10 pts</span></label>
-          <label class="option" onclick="select('partner',5,this)"><span class="option-radio"></span><span class="option-text">Partner has competent English + skills assessment</span><span class="option-score">5 pts</span></label>
           <label class="option" onclick="select('partner',10,this)"><span class="option-radio"></span><span class="option-text">Partner is Australian citizen or permanent resident</span><span class="option-score">10 pts</span></label>
+          <label class="option" onclick="select('partner',10,this)"><span class="option-radio"></span><span class="option-text">Partner has skills assessment + competent English + under 45 + skilled occupation</span><span class="option-score">10 pts</span></label>
+          <label class="option" onclick="select('partner',5,this)"><span class="option-radio"></span><span class="option-text">Partner has competent English only (no skills assessment)</span><span class="option-score">5 pts</span></label>
           <label class="option" onclick="select('partner',0,this)"><span class="option-radio"></span><span class="option-text">Partner does not meet above criteria</span><span class="option-score">0 pts</span></label>
         </div>
       </div>
@@ -412,7 +413,9 @@ function setVisa(visa, btn) {
 
 function recalc() {
   const bonus = pts.ausstudy + pts.stem + pts.language + pts.regional + pts.profyear;
-  const base = pts.age + pts.english + pts.overseas + pts.auswork + pts.education + pts.partner + bonus;
+  // IMPORTANT: Combined overseas + Australian work experience capped at 20 pts (official DHA rule)
+  const workPts = Math.min(pts.overseas + pts.auswork, 20);
+  const base = pts.age + pts.english + workPts + pts.education + pts.partner + bonus;
   const total = base + visaBonus[currentVisa];
 
   // Update display
@@ -425,7 +428,7 @@ function recalc() {
   // Status
   const statusEl = document.getElementById('score-status');
   if (total < 65) { statusEl.className='score-status no'; statusEl.textContent='Not Eligible Yet — Need 65+'; }
-  else if (total < 75) { statusEl.className='score-status maybe'; statusEl.textContent='Eligible — High Competition'; }
+  else if (total < 75) { statusEl.className='score-status maybe'; statusEl.textContent='Eligible — Low Competition'; }
   else if (total < 85) { statusEl.className='score-status yes'; statusEl.textContent='Good Score'; }
   else if (total < 90) { statusEl.className='score-status great'; statusEl.textContent='Competitive Score'; }
   else { statusEl.className='score-status great'; statusEl.textContent='Excellent Score! 🎉'; }
@@ -440,6 +443,8 @@ function recalc() {
   setB('b-english', pts.english);
   setB('b-overseas', pts.overseas);
   setB('b-auswork', pts.auswork);
+  // Show warning if work pts capped
+  if (pts.overseas + pts.auswork > 20) { document.getElementById('b-auswork').style.color='#fcd34d'; }
   setB('b-education', pts.education);
   setB('b-partner', pts.partner);
   setB('b-bonus', bonus);
