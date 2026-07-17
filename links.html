@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRM Migration | Quick Links</title>
+<style>
+  :root {
+    --navy: #0C447C;
+    --navy-dark: #08325D;
+    --teal: #1D9E75;
+    --teal-light: #26BF8E;
+    --cream: #F7F9F8;
+    --ink: #0B2436;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--navy);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 15% 0%, rgba(29,158,117,0.35), transparent 55%),
+      radial-gradient(circle at 85% 100%, rgba(29,158,117,0.25), transparent 55%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
+    display: flex;
+    justify-content: center;
+    padding: 48px 18px 40px;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  /* Header */
+  .brand {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .crest {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 26px;
+    color: var(--navy);
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    border: 3px solid var(--teal-light);
+  }
+
+  .brand h1 {
+    color: #fff;
+    font-size: 21px;
+    letter-spacing: 0.3px;
+    margin-bottom: 4px;
+  }
+
+  .brand .marn {
+    color: rgba(255,255,255,0.65);
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .tagline {
+    display: inline-block;
+    max-width: 260px;
+    color: var(--teal-light);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    border: 1px solid rgba(38,191,142,0.5);
+    padding: 7px 16px;
+    border-radius: 999px;
+    line-height: 1.4;
+  }
+
+  /* Links */
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: var(--ink);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border-left: 4px solid var(--teal);
+  }
+
+  .link-btn:active {
+    transform: scale(0.98);
+  }
+
+  .link-btn .icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 10px;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+  }
+
+  .link-btn .text {
+    flex: 1;
+  }
+
+  .link-btn .title {
+    font-weight: bold;
+    font-size: 15.5px;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+
+  .link-btn .sub {
+    font-size: 12.5px;
+    color: #5b6b76;
+  }
+
+  .link-btn .chev {
+    color: var(--teal);
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .link-btn.featured {
+    border-left-color: var(--teal-light);
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+  }
+
+  .link-btn.featured .title,
+  .link-btn.featured .sub {
+    color: #fff;
+  }
+
+  .link-btn.featured .icon {
+    background: rgba(255,255,255,0.25);
+  }
+
+  .link-btn.featured .chev {
+    color: #fff;
+  }
+
+  .section-label {
+    color: rgba(255,255,255,0.55);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 28px 4px 12px;
+  }
+
+  .links.secondary {
+    margin-top: 0;
+  }
+
+  .link-btn.outline {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-left: 4px solid rgba(38,191,142,0.6);
+    box-shadow: none;
+  }
+
+  .link-btn.outline .title {
+    color: #fff;
+  }
+
+  .link-btn.outline .sub {
+    color: rgba(255,255,255,0.6);
+  }
+
+  .link-btn.outline .icon {
+    background: rgba(255,255,255,0.1);
+  }
+
+  .link-btn.outline .chev {
+    color: var(--teal-light);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 34px;
+  }
+
+  .footer .contact {
+    color: rgba(255,255,255,0.8);
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .footer .contact a {
+    color: var(--teal-light);
+    text-decoration: none;
+  }
+
+  .footer .disclaimer {
+    color: rgba(255,255,255,0.45);
+    font-size: 11px;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="brand">
+    <div class="crest">JRM</div>
+    <h1>JRM Migration</h1>
+    <div class="marn">Registered Migration Agent &middot; MARN 2619398 &middot; Melbourne, AU</div>
+    <span class="tagline">Your Journey. Our Responsibility.</span>
+  </div>
+
+  <div class="links">
+
+    <a class="link-btn featured" href="https://wa.me/61402220634?text=Hi%20JRM%20Migration%2C%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank" rel="noopener">
+      <div class="icon">💬</div>
+      <div class="text">
+        <div class="title">Chat on WhatsApp</div>
+        <div class="sub">Fastest way to reach us directly</div>
+      </div>
+      <div class="chev">›</div>
+    </a>
+
+    <a class="link-btn" href="https://jrmmigration.com/#contact" target="_blank" rel="noopener">
+      <div class="icon">📅</div>
+      <div class="text">
+        <div class="title">Book a Free Consultation</div>
+        <div class="sub">Get a personalised visa strategy</div>
+      </div>
+      <div class="chev">›</div>
+    </a>
+
+    <a class="link-btn" href="https://jrmmigration.com/points-calculator.html" target="_blank" rel="noopener">
+      <div class="icon">🧮</div>
+      <div class="text">
+        <div class="title">Points Calculator</div>
+        <div class="sub">Check your skilled migration score</div>
+      </div>
+      <div class="chev">›</div>
+    </a>
+
+    <a class="link-btn" href="https://jrmmigration.com/#blog" target="_blank" rel="noopener">
+      <div class="icon">📋</div>
+      <div class="text">
+        <div class="title">Migration Guides</div>
+        <div class="sub">Free resources on visas & PR pathways</div>
+      </div>
+      <div class="chev">›</div>
+    </a>
+
+    <a class="link-btn" href="https://jrmmigration.com" target="_blank" rel="noopener">
+      <div class="icon">🌐</div>
+      <div class="text">
+        <div class="title">Visit Our Website</div>
+        <div class="sub">jrmmigration.com</div>
+      </div>
+      <div class="chev">›</div>
+    </a>
+
+    <a class="link-btn" href="https://www.instagram.com/jrmmigration" target="_blank" rel="noopener">
+      <div class="icon">📸</div>
+      <div class="text">
+        <div class="title">Follow on Instagram</div>
+        <div class="sub">@jrmmigration</div>
+      </div>
+      <div class="chev">›</div>
+    </a>
+
+  </div>
+
+  <div class="section-label">Useful Resources</div>
+
+  <div class="links secondary">
+
+    <a class="link-btn outline" href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-finder" target="_blank" rel="noopener">
+      <div class="icon">🔍</div>
+      <div class="text">
+        <div class="title">Visa Finder Tool</div>
+        <div class="sub">Official Home Affairs eligibility tool</div>
+      </div>
+      <div class="chev">›</div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <div class="contact">
+      <a href="mailto:info@jrmmigration.com">info@jrmmigration.com</a> &middot; +61 402 220 634
+    </div>
+    <div class="disclaimer">
+      This page provides general information only and is not a substitute for individual migration advice.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
