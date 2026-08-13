@@ -101,20 +101,15 @@
   #services .section-sub { color: rgba(255,255,255,0.6); }
   .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
   .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .service-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; padding: 34px 30px; transition: all 0.3s; position: relative; overflow: hidden; }
+  .service-card { background: var(--teal); border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; padding: 34px 30px; transition: all 0.3s; position: relative; overflow: hidden; }
   .service-card::before { content: ''; position: absolute; inset: 0; border-radius: 22px; background: linear-gradient(135deg, rgba(29,158,117,0.12), transparent); opacity: 0; transition: opacity 0.3s; }
   .service-card:hover::before { opacity: 1; }
   .service-card:hover { border-color: rgba(29,158,117,0.4); transform: translateY(-4px); }
-  .service-card.featured { background: var(--teal); border-color: var(--teal); }
-  .service-card.featured::before { display: none; }
-  .service-card.featured:hover { transform: translateY(-4px); }
-  .service-icon { width: 50px; height: 50px; border-radius: 12px; background: rgba(29,158,117,0.15); border: 1px solid rgba(29,158,117,0.3); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 22px; }
-  .service-card.featured .service-icon { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3); }
+  .service-icon { width: 50px; height: 50px; border-radius: 12px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 22px; }
   .service-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 10px; }
-  .service-desc { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 18px; }
-  .service-card.featured .service-desc { color: rgba(255,255,255,0.85); }
-  .service-fee { display: inline-flex; align-items: center; background: rgba(29,158,117,0.15); border: 1px solid rgba(29,158,117,0.3); padding: 6px 14px; border-radius: 50px; font-size: 13px; font-weight: 600; color: var(--teal-light); }
-  .service-card.featured .service-fee { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3); color: white; }
+  .service-desc { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 18px; }
+  .service-fee { display: inline-flex; align-items: center; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 6px 14px; border-radius: 50px; font-size: 13px; font-weight: 600; color: white; text-decoration: none; }
+  .service-fee:hover { background: rgba(255,255,255,0.3); }
 
   /* WHY */
   #why { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -144,23 +139,61 @@
   .step-title { font-size: 15px; font-weight: 700; color: var(--navy-dark); margin-bottom: 10px; }
   .step-desc { font-size: 13px; line-height: 1.65; color: var(--gray); }
 
+  /* FAQ */
+  #faq { background: var(--light); }
+  .faq-wrap { max-width: 800px; margin: 56px auto 0; }
+  .faq-item { border-bottom: 1px solid rgba(12,68,124,0.1); cursor: pointer; }
+  .faq-item:first-child { border-top: 1px solid rgba(12,68,124,0.1); }
+  .faq-q { font-size: 16px; font-weight: 600; color: var(--navy-dark); display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; line-height: 1.4; transition: color 0.2s; }
+  .faq-icon { font-size: 22px; color: var(--teal); font-weight: 300; flex-shrink: 0; transition: transform 0.3s; }
+  .faq-a { font-size: 14px; line-height: 1.8; color: #4a5568; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+  .faq-item.open .faq-a { max-height: 400px; padding-bottom: 22px; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-item:hover .faq-q { color: var(--teal); }
+
+  /* TESTIMONIALS */
+  #testimonials { background: var(--navy-dark); }
+  #testimonials .section-eyebrow { color: var(--teal-light); }
+  #testimonials .section-eyebrow::before { background: var(--teal-light); }
+  #testimonials .section-title { color: white; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 52px; }
+  .testimonial-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; transition: all 0.3s; }
+  .testimonial-card:hover { border-color: rgba(29,158,117,0.4); transform: translateY(-4px); }
+  .testimonial-stars { color: var(--gold); font-size: 16px; margin-bottom: 16px; letter-spacing: 2px; }
+  .testimonial-text { font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 20px; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--sky)); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 700; color: white; font-size: 16px; }
+  .testimonial-name { font-size: 14px; font-weight: 600; color: white; }
+  .testimonial-visa { font-size: 11px; color: var(--teal-light); margin-top: 2px; }
+
+  /* QUIZ */
+  #quiz { background: white; text-align: center; }
+  .quiz-box { max-width: 680px; margin: 52px auto 0; background: var(--navy-dark); border-radius: 28px; padding: 48px; }
+  .quiz-step { display: none; }
+  .quiz-step.active { display: block; }
+  .quiz-question { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: white; margin-bottom: 28px; line-height: 1.4; }
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .quiz-option { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 16px 20px; cursor: pointer; text-align: left; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); transition: all 0.2s; }
+  .quiz-option:hover { border-color: var(--teal); background: rgba(29,158,117,0.1); color: white; }
+  .quiz-option.selected { border-color: var(--teal); background: rgba(29,158,117,0.2); color: white; }
+  .quiz-progress { display: flex; gap: 6px; justify-content: center; margin-bottom: 32px; }
+  .quiz-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: all 0.3s; }
+  .quiz-dot.done { background: var(--teal); }
+  .quiz-result { background: rgba(29,158,117,0.1); border: 1px solid rgba(29,158,117,0.3); border-radius: 16px; padding: 28px; margin-top: 8px; }
+  .quiz-result-visa { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 800; color: white; margin-bottom: 10px; }
+  .quiz-result-desc { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.75); margin-bottom: 22px; }
+  .quiz-restart { background: none; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); padding: 8px 20px; border-radius: 50px; font-size: 13px; cursor: pointer; margin-top: 12px; }
+  .quiz-restart:hover { border-color: var(--teal); color: var(--teal); }
+
   /* BLOG */
   #blog { background: var(--light); }
   .blog-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 22px; margin-top: 52px; }
   .blog-card { background: white; border-radius: 20px; overflow: hidden; transition: all 0.3s; cursor: pointer; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   .blog-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
   .blog-image { width: 100%; height: 200px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-
-  .blog-card:nth-child(1) .blog-image {
-    height: 260px;
-    background: linear-gradient(180deg, #0d2137 0%, #0d4f7c 20%, #1a7ab5 45%, #2fa8c8 65%, #62c9b8 80%, #9edec8 92%, #c8f0e0 100%);
-  }
-  .blog-card:nth-child(2) .blog-image {
-    background: linear-gradient(135deg, #0d3b5e 0%, #1565a0 40%, #1976d2 70%, #42a5f5 100%);
-  }
-  .blog-card:nth-child(3) .blog-image {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #533483 100%);
-  }
+  .blog-card:nth-child(1) .blog-image { height: 260px; background: linear-gradient(180deg, #0d2137 0%, #0d4f7c 20%, #1a7ab5 45%, #2fa8c8 65%, #62c9b8 80%, #9edec8 92%, #c8f0e0 100%); }
+  .blog-card:nth-child(2) .blog-image { background: linear-gradient(135deg, #0d3b5e 0%, #1565a0 40%, #1976d2 70%, #42a5f5 100%); }
+  .blog-card:nth-child(3) .blog-image { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #533483 100%); }
   .blog-body { padding: 26px; }
   .blog-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; display: block; }
   .blog-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--navy-dark); line-height: 1.35; margin-bottom: 8px; }
@@ -198,6 +231,7 @@
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .form-submit { width: 100%; background: var(--teal); color: white; border: none; border-radius: 12px; padding: 15px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.25s; margin-top: 6px; box-shadow: 0 8px 30px rgba(29,158,117,0.3); }
   .form-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(29,158,117,0.45); }
+
   /* MOBILE BOTTOM NAV */
   .mobile-bottom-nav { display: none; position: fixed; bottom: 0; top: auto; left: 0; right: 0; background: rgba(7,30,61,0.97); backdrop-filter: blur(20px); border-top: 1px solid rgba(255,255,255,0.1); z-index: 200; padding: 8px 0 12px; justify-content: space-around; align-items: center; }
   .mobile-bottom-nav a { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: rgba(255,255,255,0.5); font-size: 10px; font-weight: 500; padding: 4px 8px; min-width: 56px; }
@@ -206,6 +240,7 @@
   .nav-whatsapp { background: #1D9E75 !important; border-radius: 50% !important; width: 52px !important; height: 52px !important; margin-top: -16px !important; box-shadow: 0 4px 20px rgba(29,158,117,0.5) !important; min-width: auto !important; padding: 0 !important; justify-content: center !important; }
   .nav-whatsapp svg { width: 26px !important; height: 26px !important; }
   .nav-whatsapp span { display: none !important; }
+
   /* FOOTER */
   footer { background: #040d1a; padding: 44px 80px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
   .footer-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: white; }
@@ -218,31 +253,29 @@
   .social-btn { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 14px; transition: all 0.2s; }
   .social-btn:hover { background: var(--teal); border-color: var(--teal); }
 
+  /* FLIP CARDS */
   .flip-card { perspective: 1200px; cursor: pointer; }
-.flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
-.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-.flip-front, .flip-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 20px; overflow: hidden; }
-.flip-front { background: white; }
-.flip-back { background: #071e3d; transform: rotateY(180deg); display: flex; flex-direction: column; padding: 28px 24px; overflow-y: auto; }
-.flip-back-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #1D9E75; margin-bottom: 10px; }
-.flip-back-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 800; color: white; line-height: 1.3; margin-bottom: 14px; }
-.flip-back-body { font-size: 12px; line-height: 1.75; color: rgba(255,255,255,0.82); flex: 1; overflow-y: auto; }
-.flip-back-body p { margin-bottom: 10px; }
-.flip-back-body h3 { color: #1D9E75; font-size: 13px; font-weight: 700; margin: 14px 0 5px; }
-.flip-back-body ul { padding-left: 16px; margin-bottom: 10px; }
-.flip-back-body ul li { margin-bottom: 4px; }
-.flip-hint { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 12px; text-align: center; }
-.blog-card.flip-card { min-height: 520px; }
-    /* FLOATING CTA */
+  .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
+  .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 20px; overflow: hidden; }
+  .flip-front { background: white; }
+  .flip-back { background: #071e3d; transform: rotateY(180deg); display: flex; flex-direction: column; padding: 28px 24px; overflow-y: auto; }
+  .flip-back-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #1D9E75; margin-bottom: 10px; }
+  .flip-back-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 800; color: white; line-height: 1.3; margin-bottom: 14px; }
+  .flip-back-body { font-size: 12px; line-height: 1.75; color: rgba(255,255,255,0.82); flex: 1; overflow-y: auto; }
+  .flip-back-body p { margin-bottom: 10px; }
+  .flip-back-body h3 { color: #1D9E75; font-size: 13px; font-weight: 700; margin: 14px 0 5px; }
+  .flip-back-body ul { padding-left: 16px; margin-bottom: 10px; }
+  .flip-back-body ul li { margin-bottom: 4px; }
+  .flip-hint { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 12px; text-align: center; }
+  .blog-card.flip-card { min-height: 520px; }
+
+  /* FLOATING CTA */
   .floating-cta { position: fixed; bottom: 120px; right: 30px; z-index: 99; background: var(--teal); color: white; padding: 13px 24px; border-radius: 50px; font-size: 13px; font-weight: 600; text-decoration: none; box-shadow: 0 8px 30px rgba(29,158,117,0.5); display: flex; align-items: center; gap: 8px; animation: float 3s ease-in-out infinite; }
   @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
   .floating-cta:hover { animation: none; transform: scale(1.05); }
 
-  /* ═══════════════════════════════════════════════════
-     FULLY RESPONSIVE — MOBILE + TABLET + DESKTOP
-  ═══════════════════════════════════════════════════ */
-
-  /* TABLET — 768px to 1024px */
+  /* TABLET */
   @media (max-width: 1024px) {
     nav { padding: 16px 32px; }
     nav.scrolled { padding: 12px 32px; }
@@ -270,50 +303,25 @@
     .contact-offices { grid-template-columns: 1fr 1fr; }
     footer { padding: 36px 40px; gap: 24px; flex-wrap: wrap; justify-content: center; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+    .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
+    .quiz-options { grid-template-columns: 1fr; }
   }
 
-  /* MOBILE — up to 768px */
+  /* MOBILE */
   @media (max-width: 768px) {
-
-    /* NAV */
     nav { padding: 14px 20px; }
     nav.scrolled { padding: 10px 20px; }
     .nav-links { display: none; }
     .nav-name { font-size: 16px; }
     .nav-tag { display: none; }
-
-    /* Mobile hamburger menu */
-    .mobile-menu-btn {
-      display: flex; flex-direction: column; gap: 5px; cursor: pointer;
-      padding: 6px; border: none; background: transparent;
-    }
-    .mobile-menu-btn span {
-      display: block; width: 24px; height: 2px;
-      background: var(--navy); border-radius: 2px; transition: all 0.3s;
-    }
-    .mobile-nav {
-      display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
-      background: rgba(250,247,242,0.98); backdrop-filter: blur(20px);
-      flex-direction: column; align-items: center; justify-content: center;
-      gap: 32px; z-index: 99;
-    }
+    .mobile-menu-btn { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; border: none; background: transparent; }
+    .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
+    .mobile-nav { display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: rgba(250,247,242,0.98); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 32px; z-index: 99; }
     .mobile-nav.open { display: flex; }
-    .mobile-nav a {
-      font-size: 22px; font-weight: 600; color: var(--navy);
-      text-decoration: none; letter-spacing: 0.04em;
-    }
-    .mobile-nav .mobile-cta {
-      background: var(--teal); color: white; padding: 14px 36px;
-      border-radius: 50px; font-size: 16px;
-    }
-
-    /* TOP BAR */
+    .mobile-nav a { font-size: 22px; font-weight: 600; color: var(--navy); text-decoration: none; letter-spacing: 0.04em; }
+    .mobile-nav .mobile-cta { background: var(--teal); color: white; padding: 14px 36px; border-radius: 50px; font-size: 16px; }
     .top-bar { font-size: 11px; padding: 8px 16px; line-height: 1.5; }
-
-    /* SECTIONS */
     section { padding: 60px 20px; }
-
-    /* HERO */
     #home { grid-template-columns: 1fr; padding-top: 70px; }
     .hero-left { padding: 50px 20px 40px; text-align: center; align-items: center; }
     .hero-eyebrow { font-size: 10px; justify-content: center; }
@@ -332,8 +340,6 @@
     .founder-name { font-size: 13px; }
     .founder-role { font-size: 10px; }
     .founder-badge { font-size: 10px; padding: 5px 10px; }
-
-    /* ABOUT */
     #about { grid-template-columns: 1fr; gap: 30px; padding: 60px 20px; }
     .about-image-block { max-width: 100%; }
     .about-image-main { aspect-ratio: 16/9; border-radius: 16px; }
@@ -347,8 +353,6 @@
     .value-title { font-size: 13px; }
     .value-desc { font-size: 11px; }
     .section-title { font-size: 28px; }
-
-    /* SERVICES */
     #services { padding: 60px 20px; }
     .services-header { flex-direction: column; gap: 20px; align-items: flex-start; margin-bottom: 36px; }
     .services-grid { grid-template-columns: 1fr; gap: 14px; }
@@ -356,8 +360,6 @@
     .service-icon { width: 44px; height: 44px; font-size: 18px; margin-bottom: 16px; }
     .service-title { font-size: 16px; margin-bottom: 8px; }
     .service-desc { font-size: 13px; margin-bottom: 14px; }
-
-    /* WHY */
     #why { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px; }
     .why-item { gap: 16px; padding: 20px 0; }
     .why-title { font-size: 15px; }
@@ -368,16 +370,21 @@
     .why-stat-num { font-size: 28px; }
     .why-stat-label { font-size: 10px; }
     .why-quote { font-size: 15px; }
-
-    /* PROCESS */
     #process { padding: 60px 20px; }
     .process-steps { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
     .process-steps::before { display: none; }
     .step-circle { width: 60px; height: 60px; font-size: 22px; margin-bottom: 16px; }
     .step-title { font-size: 14px; margin-bottom: 8px; }
     .step-desc { font-size: 12px; }
-
-    /* BLOG */
+    #faq { padding: 60px 20px; }
+    .faq-q { font-size: 15px; }
+    .faq-a { font-size: 13px; }
+    #testimonials { padding: 60px 20px; }
+    .testimonials-grid { grid-template-columns: 1fr; gap: 14px; }
+    #quiz { padding: 60px 20px; }
+    .quiz-box { padding: 32px 20px; }
+    .quiz-options { grid-template-columns: 1fr; }
+    .quiz-question { font-size: 19px; }
     #blog { padding: 60px 20px; }
     .blog-grid { grid-template-columns: 1fr; gap: 16px; }
     .blog-card:nth-child(1) .blog-image { height: 200px; }
@@ -385,8 +392,6 @@
     .blog-title { font-size: 16px; }
     .blog-card:nth-child(1) .blog-title { font-size: 18px; }
     .blog-excerpt { font-size: 13px; }
-
-    /* CONTACT */
     #contact { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px; }
     .contact-details { margin-top: 24px; gap: 12px; }
     .contact-item { padding: 14px 16px; gap: 12px; }
@@ -399,21 +404,16 @@
     .form-title { font-size: 20px; margin-bottom: 24px; }
     .form-row { grid-template-columns: 1fr; gap: 0; }
     .form-input, .form-select, .form-textarea { padding: 12px 14px; font-size: 14px; }
-
-    /* FOOTER */
     footer { padding: 32px 20px; flex-direction: column; gap: 20px; text-align: center; }
     .footer-name { font-size: 16px; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 14px; }
     .footer-legal { font-size: 10px; margin-top: 6px; }
     .footer-social { justify-content: center; }
-
-   /* FLOATING CTA */
     .floating-cta { display: none !important; }
     .mobile-bottom-nav { display: flex !important; }
     body { padding-bottom: 70px; }
   }
 
-  /* SMALL MOBILE — up to 380px */
   @media (max-width: 380px) {
     .hero-h1 { font-size: 30px; }
     .section-title { font-size: 24px; }
@@ -423,7 +423,6 @@
     .contact-offices { grid-template-columns: 1fr; }
     .hero-trust { gap: 16px; }
   }
-
 </style>
 </head>
 <body>
@@ -449,22 +448,24 @@
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#process">Process</a>
-    <a href="#blog">Resources</a><a href="points-calculator.html" style="background:#1D9E75; color:white !important; padding:11px 22px; border-radius:50px; font-size:13px !important; font-weight:600 !important;">Points Calculator</a>
+    <a href="#faq">FAQ</a>
+    <a href="#blog">Resources</a>
+    <a href="points-calculator.html" style="background:#1D9E75; color:white !important; padding:11px 22px; border-radius:50px; font-size:13px !important; font-weight:600 !important;">Points Calculator</a>
     <a href="#contact">Contact</a>
     <a href="#contact" class="nav-cta">Book Free Consult</a>
   </div>
-  <!-- Mobile hamburger -->
   <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu" style="display:none;">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- Mobile nav overlay -->
 <div class="mobile-nav" id="mobileNav">
   <a href="#about" onclick="closeMobileNav()">About</a>
   <a href="#services" onclick="closeMobileNav()">Services</a>
   <a href="#process" onclick="closeMobileNav()">Process</a>
-  <a href="#blog" onclick="closeMobileNav()">Resources</a><a href="points-calculator.html" onclick="closeMobileNav()">Points Calculator</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="#blog" onclick="closeMobileNav()">Resources</a>
+  <a href="points-calculator.html" onclick="closeMobileNav()">Points Calculator</a>
   <a href="#contact" onclick="closeMobileNav()">Contact</a>
   <a href="#contact" class="mobile-cta" onclick="closeMobileNav()">Book Free Consult</a>
 </div>
@@ -480,18 +481,9 @@
       <a href="#about" class="btn-ghost">Our Story →</a>
     </div>
     <div class="hero-trust">
-      <div>
-        <div class="trust-num">ALL</div>
-        <div class="trust-label">Visa Types Handled</div>
-      </div>
-      <div>
-        <div class="trust-num">Multiple</div>
-        <div class="trust-label">Countries, One Team</div>
-      </div>
-      <div>
-        <div class="trust-num">🌍</div>
-        <div class="trust-label">Global Reach</div>
-      </div>
+      <div><div class="trust-num">ALL</div><div class="trust-label">Visa Types Handled</div></div>
+      <div><div class="trust-num">Multiple</div><div class="trust-label">Countries, One Team</div></div>
+      <div><div class="trust-num">🌍</div><div class="trust-label">Global Reach</div></div>
     </div>
   </div>
   <div class="hero-right">
@@ -520,7 +512,7 @@
       <div class="founder-avatar">J</div>
       <div>
         <div class="founder-name">JRM</div>
-        <div class="founder-role">Migration Consultantcy · Australia</div>
+        <div class="founder-role">Migration Consultancy · Australia</div>
       </div>
       <div class="founder-badge">MARA Registered ✓</div>
     </div>
@@ -530,9 +522,7 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-image-block">
-    <div class="about-image-main">
-      <span class="about-monogram">JRM</span>
-    </div>
+    <div class="about-image-main"><span class="about-monogram">JRM</span></div>
     <div class="about-quote-card">
       <div class="about-quote-text">"I built JRM Migration to be the guide I wish I'd had."</div>
       <div class="about-quote-author">— FOUNDER</div>
@@ -547,7 +537,7 @@
       <div class="value-item"><div class="value-icon">🧭</div><div class="value-title">Trustworthy</div><div class="value-desc">Honest guidance, always in your best interest</div></div>
       <div class="value-item"><div class="value-icon">💙</div><div class="value-title">Compassionate</div><div class="value-desc">We understand the emotional weight of migration</div></div>
       <div class="value-item"><div class="value-icon">⚡</div><div class="value-title">Expert</div><div class="value-desc">MARA Registered — fully accredited and legally authorised</div></div>
-      <div class="value-item"><div class="value-icon">🌏</div><div class="value-title">Client focused</div><div class="value-desc">Wherever You Are — We serve clients no matter where you are in the world</div></div>
+      <div class="value-item"><div class="value-icon">🌏</div><div class="value-title">Client Focused</div><div class="value-desc">We serve clients no matter where you are in the world</div></div>
     </div>
   </div>
 </section>
@@ -562,41 +552,41 @@
     <p class="section-sub" style="max-width:340px;">From student visas to permanent residency — we guide you through every step of the Australian migration system.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card featured">
+    <div class="service-card">
       <div class="service-icon">🎓</div>
       <div class="service-title">Student Visa (Subclass 500)</div>
       <div class="service-desc">Begin your Australian education journey. We handle eligibility, documentation, and lodgement — end to end.</div>
-      <div class="service-fee">Get in Touch for Pricing</div>
+      <a href="student-visa.html" class="service-fee">Learn More →</a>
     </div>
     <div class="service-card">
       <div class="service-icon">⭐</div>
       <div class="service-title">General Skilled Migration (189/190/491)</div>
       <div class="service-desc">Points-tested visa for skilled workers. No sponsorship needed. We assess your eligibility and guide you through the points process.</div>
-      <div class="service-fee">Tailored to Your Case</div>
+      <a href="skilled-independent.html" class="service-fee">Learn More →</a>
     </div>
     <div class="service-card">
       <div class="service-icon">✈️</div>
       <div class="service-title">Visitor Visa (600)</div>
-      <div class="service-desc">Planning a visit to Australia? We handle tourist and family visit visa applications — making sure your application is complete, honest, and gives you the best chance of approval.</div>
-      <div class="service-fee">Tailored to Your Case</div>
+      <div class="service-desc">Planning a visit to Australia? We handle tourist and family visit visa applications — complete, honest, and giving you the best chance of approval.</div>
+      <a href="#contact" class="service-fee">Get in Touch →</a>
     </div>
     <div class="service-card">
       <div class="service-icon">💼</div>
       <div class="service-title">Employer Sponsored (482/186)</div>
-      <div class="service-desc">Skills in Demand visa — we work with both employers and employees to navigate this pathway.</div>
-      <div class="service-fee">Book a Free Consult</div>
+      <div class="service-desc">Skills in Demand visa — we work with both employers and employees to navigate this pathway from temporary to permanent.</div>
+      <a href="employer-sponsored.html" class="service-fee">Learn More →</a>
     </div>
     <div class="service-card">
       <div class="service-icon">❤️</div>
       <div class="service-title">Partner Visa (820/801 & 309/100)</div>
-      <div class="service-desc">Bringing loved ones to Australia. We understand the emotional importance of these applications.</div>
-      <div class="service-fee">Book a Free Consult</div>
+      <div class="service-desc">Bringing loved ones to Australia. We understand the emotional importance of these applications and handle every detail with care.</div>
+      <a href="partner-visa.html" class="service-fee">Learn More →</a>
     </div>
     <div class="service-card">
       <div class="service-icon">🗺️</div>
       <div class="service-title">PR Pathway Planning</div>
-      <div class="service-desc">Not sure which visa is right for you? A 1-hour strategy session where our RMA maps your complete pathway.</div>
-      <div class="service-fee">Let's Talk →</div>
+      <div class="service-desc">Not sure which visa is right for you? A strategy session where our RMA maps your complete pathway to permanent residency.</div>
+      <a href="pr-planning.html" class="service-fee">Learn More →</a>
     </div>
   </div>
 </section>
@@ -619,7 +609,7 @@
     <div class="why-stat-grid">
       <div class="why-stat-card accent"><div class="why-stat-num">MARA</div><div class="why-stat-label">Registered Agent</div></div>
       <div class="why-stat-card"><div class="why-stat-num">Free</div><div class="why-stat-label">Initial Consultation</div></div>
-      <div class="why-stat-card"><div class="why-stat-num">2</div><div class="why-stat-label">Offices</div></div>
+      <div class="why-stat-card"><div class="why-stat-num">3</div><div class="why-stat-label">Languages Spoken</div></div>
       <div class="why-stat-card" style="background:rgba(55,138,221,0.15);border-color:rgba(55,138,221,0.3)"><div class="why-stat-num" style="color:#85B7EB;">5★</div><div class="why-stat-label">Service commitment — every client</div></div>
     </div>
     <div>
@@ -634,10 +624,167 @@
   <div class="section-eyebrow">How It Works</div>
   <h2 class="section-title">From enquiry to <em>approval</em> — we walk every step.</h2>
   <div class="process-steps">
-    <div class="process-step"><div class="step-circle">1</div><div class="step-title">Free Consultation</div><div class="step-desc">Book a free 30-minute call with our RMA. We assess your situation and identify the best visa pathway.</div></div>
-    <div class="process-step"><div class="step-circle">2</div><div class="step-title">Document Collection</div><div class="step-desc">We provide a personalised checklist and guide you through gathering every document needed — making the process simple and stress-free.</div></div>
-    <div class="process-step"><div class="step-circle">3</div><div class="step-title">Application Lodgement</div><div class="step-desc">We prepare and lodge your application with the Australian Department of Home Affairs.</div></div>
-    <div class="process-step"><div class="step-circle">4</div><div class="step-title">Outcome & Support</div><div class="step-desc">We keep you updated throughout and are by your side when the decision arrives.</div></div>
+    <div class="process-step"><div class="step-circle">1</div><div class="step-title">Free Consultation</div><div class="step-desc">Book a free 30-minute call with our RMA. We assess your situation and identify the best visa pathway for you.</div></div>
+    <div class="process-step"><div class="step-circle">2</div><div class="step-title">Document Collection</div><div class="step-desc">We provide a personalised checklist and guide you through gathering every document needed — simple and stress-free.</div></div>
+    <div class="process-step"><div class="step-circle">3</div><div class="step-title">Application Lodgement</div><div class="step-desc">We prepare and lodge your application with the Australian Department of Home Affairs on your behalf.</div></div>
+    <div class="process-step"><div class="step-circle">4</div><div class="step-title">Outcome & Support</div><div class="step-desc">We keep you updated throughout and are by your side when the decision arrives — whatever the outcome.</div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div style="text-align:center; max-width:640px; margin:0 auto;">
+    <div class="section-eyebrow" style="justify-content:center;">Common Questions</div>
+    <h2 class="section-title">Everything you need to <em>know</em>.</h2>
+    <p class="section-sub" style="margin:0 auto;">Honest answers to the questions we hear most — straight from our agent.</p>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Do I need a migration agent to apply for an Australian visa? <span class="faq-icon">+</span></div>
+      <div class="faq-a">No — you can apply yourself. But Australian immigration law is complex, and a single error can result in a refusal. A MARA Registered agent like JRM Migration ensures your application is correct, complete, and gives you the strongest possible chance of success.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">What does MARA Registered mean and why does it matter? <span class="faq-icon">+</span></div>
+      <div class="faq-a">MARA stands for the Migration Agents Registration Authority — the Australian government body that regulates migration agents. Only MARA Registered agents are legally allowed to provide migration advice in Australia. When you work with a MARA agent, you are protected by Australian law, a strict Code of Conduct, and a professional complaints process.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">How much does it cost to work with JRM Migration? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Your first consultation is completely free — 30 minutes, no obligation. After that, fees depend on the visa type and complexity of your case. We always provide a clear written quote before any work begins, so there are no surprises. There are also separate government charges (visa application fees) that are paid directly to the Department of Home Affairs — we will explain all of these upfront.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">How long does an Australian visa take to process? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Processing times vary significantly depending on the visa type. Student visas can be decided in a few weeks. Partner visas can take 12 to 30 months. Skilled visas depend on when you receive an invitation through SkillSelect. We give you realistic timeframes based on the current processing environment — not optimistic guesses.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Can I apply for Australian PR from India? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes — several pathways allow you to apply for Australian permanent residency from outside Australia. The Skilled Independent visa (Subclass 189) and Skilled Nominated visa (Subclass 190) can both be applied for offshore. We also have an office in India and regularly help clients at every stage of the process — from skills assessment through to visa grant.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Can JRM Migration help if my visa was previously refused? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. A previous refusal does not automatically prevent you from applying again — but it must be disclosed on any future application. We will review what happened, identify what can be strengthened, and advise honestly on whether a fresh application is viable and what it will take to succeed.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Do you offer consultations in Punjabi or Hindi? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes — we consult in English, Punjabi, and Hindi. We believe migration is complex enough without a language barrier. Our goal is for every client to fully understand their situation, their options, and every step of the process.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">What is the difference between a Subclass 482 and a Subclass 186 visa? <span class="faq-icon">+</span></div>
+      <div class="faq-a">The Subclass 482 (Skills in Demand visa) is a temporary employer-sponsored visa that allows you to live and work in Australia for up to 4 years. The Subclass 186 (Employer Nomination Scheme) is a permanent visa — once granted, you can stay in Australia indefinitely. Many clients transition from a 482 to a 186 after working for their sponsoring employer for at least two years.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISA QUIZ -->
+<section id="quiz">
+  <div style="text-align:center; max-width:640px; margin:0 auto;">
+    <div class="section-eyebrow" style="justify-content:center;">Free Tool</div>
+    <h2 class="section-title">Not sure which visa is <em>right for you?</em></h2>
+    <p class="section-sub" style="margin:0 auto;">Answer 4 quick questions and we'll point you in the right direction.</p>
+  </div>
+  <div class="quiz-box">
+    <div class="quiz-progress">
+      <div class="quiz-dot done" id="dot0"></div>
+      <div class="quiz-dot" id="dot1"></div>
+      <div class="quiz-dot" id="dot2"></div>
+      <div class="quiz-dot" id="dot3"></div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="quiz-step active" id="q0">
+      <div class="quiz-question">Where are you right now?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,'australia')">Currently in Australia</button>
+        <button class="quiz-option" onclick="answer(0,'overseas')">Outside Australia</button>
+        <button class="quiz-option" onclick="answer(0,'student')">Student in Australia</button>
+        <button class="quiz-option" onclick="answer(0,'employer')">Have an Australian employer</button>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-step" id="q1">
+      <div class="quiz-question">What is your main goal?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,'pr')">Permanent Residency (PR)</button>
+        <button class="quiz-option" onclick="answer(1,'study')">Study in Australia</button>
+        <button class="quiz-option" onclick="answer(1,'visit')">Visit or reunite with family</button>
+        <button class="quiz-option" onclick="answer(1,'work')">Work in Australia</button>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-step" id="q2">
+      <div class="quiz-question">Do you have a skilled occupation and work experience?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,'yes_skilled')">Yes — skilled trade or profession</button>
+        <button class="quiz-option" onclick="answer(2,'yes_unskilled')">Yes — but not in a skilled occupation</button>
+        <button class="quiz-option" onclick="answer(2,'student_grad')">I am a recent graduate</button>
+        <button class="quiz-option" onclick="answer(2,'not_sure')">Not sure</button>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-step" id="q3">
+      <div class="quiz-question">Do you have a partner or family members to include?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,'partner_au')">Yes — partner is Australian / PR</button>
+        <button class="quiz-option" onclick="answer(3,'partner_overseas')">Yes — partner is overseas with me</button>
+        <button class="quiz-option" onclick="answer(3,'family')">Family members to include</button>
+        <button class="quiz-option" onclick="answer(3,'solo')">Applying solo</button>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="quiz-step" id="qresult">
+      <div class="quiz-result">
+        <div style="font-size:36px; margin-bottom:12px;">🎯</div>
+        <div class="quiz-result-visa" id="result-visa"></div>
+        <div class="quiz-result-desc" id="result-desc"></div>
+        <a href="#contact" class="btn-primary" style="display:inline-block;">Book Free Consultation →</a>
+      </div>
+      <button class="quiz-restart" onclick="restartQuiz()">Start again</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-eyebrow">Client Stories</div>
+  <h2 class="section-title" style="color:white;">Real people. <em>Real journeys.</em></h2>
+  <p class="section-sub">What our clients say about working with JRM Migration.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"JRM Migration made the whole process so much less stressful. They explained everything in Punjabi and I always knew exactly what was happening with my application."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">P</div>
+        <div>
+          <div class="testimonial-name">Priya S.</div>
+          <div class="testimonial-visa">Student Visa · Melbourne</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"I had already been refused once before I found JRM Migration. They reviewed everything, explained exactly what went wrong, and helped me put together a much stronger application."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">A</div>
+        <div>
+          <div class="testimonial-name">Amarjit K.</div>
+          <div class="testimonial-visa">Partner Visa · Brisbane</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"Professional, honest, and genuinely caring. JRM Migration never promised anything they couldn't deliver — which actually made me trust them more. Highly recommend."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">R</div>
+        <div>
+          <div class="testimonial-name">Rajesh M.</div>
+          <div class="testimonial-visa">Skilled Visa 189 · Sydney</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -648,154 +795,98 @@
   <p class="section-sub">Free guides, tips, and real stories to help you navigate the Australian migration journey with confidence.</p>
   <div class="blog-grid">
     <div class="blog-card flip-card" onclick="this.classList.toggle('flipped')" style="min-height:520px;">
-  <div class="flip-card-inner" style="min-height:520px;">
-
-    <!-- FRONT -->
-    <div class="flip-front">
-      <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1200&q=90&fit=crop'); background-size: cover; background-position: center; height: 260px;"></div>
-      <div class="blog-body">
-        <span class="blog-tag">PR Pathways</span>
-        <div class="blog-title">The Complete Guide to Australian Permanent Residency in 2026</div>
-        <div class="blog-excerpt">Everything you need to know about PR pathways — explained simply and honestly by our team.</div>
-        <div class="blog-meta">By JRM Team &middot; 8 min read &middot; <span style="color:var(--teal);font-weight:600;">Tap to read &rarr;</span></div>
+      <div class="flip-card-inner" style="min-height:520px;">
+        <div class="flip-front">
+          <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1200&q=90&fit=crop'); background-size: cover; background-position: center; height: 260px;"></div>
+          <div class="blog-body">
+            <span class="blog-tag">PR Pathways</span>
+            <div class="blog-title">The Complete Guide to Australian Permanent Residency in 2026</div>
+            <div class="blog-excerpt">Everything you need to know about PR pathways — explained simply and honestly by our team.</div>
+            <div class="blog-meta">By JRM Team &middot; 8 min read &middot; <span style="color:var(--teal);font-weight:600;">Tap to read &rarr;</span></div>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-tag">PR Pathways</div>
+          <div class="flip-back-title">The Complete Guide to Australian Permanent Residency in 2026</div>
+          <div class="flip-back-body">
+            <p>Australian Permanent Residency is one of the most life-changing milestones a person can achieve — and one of the most misunderstood. At JRM Migration, we work with clients every day who come to us confused, overwhelmed, and unsure where to even begin.</p>
+            <h3>What is Permanent Residency?</h3>
+            <p>PR allows you to live, work, and study in Australia indefinitely — with no visa renewals and no expiry dates. You gain access to Medicare, the right to sponsor eligible family members, and after meeting residency requirements, the pathway to Australian citizenship.</p>
+            <h3>The Main PR Pathways in 2026</h3>
+            <p><strong>1. Skilled Independent — Subclass 189</strong><br>No employer or state sponsor required. A minimum of 65 points is required, though most successful applicants score 80 or above.</p>
+            <p><strong>2. Skilled Nominated — Subclass 190</strong><br>A state or territory nominates you, adding 5 points to your score. Generally more accessible than the 189.</p>
+            <p><strong>3. Employer Sponsored — Subclass 482 to 186</strong><br>Your employer sponsors you on a temporary skilled visa first. After two years, you become eligible to apply for permanent residency.</p>
+            <h3>Our Advice</h3>
+            <p>No two cases are the same. Book a free 30-minute consultation with our team — so we can assess your individual circumstances and map out the most realistic pathway forward.</p>
+          </div>
+          <div class="flip-hint">&larr; Tap to flip back</div>
+        </div>
       </div>
     </div>
-
-    <!-- BACK -->
-    <div class="flip-back">
-      <div class="flip-back-tag">PR Pathways</div>
-      <div class="flip-back-title">The Complete Guide to Australian Permanent Residency in 2026</div>
-      <div class="flip-back-body">
-
-        <p>Australian Permanent Residency is one of the most life-changing milestones a person can achieve — and one of the most misunderstood. At JRM Migration, we work with clients every day who come to us confused, overwhelmed, and unsure where to even begin.</p>
-
-        <p>This guide is our way of cutting through the noise and giving you a clear, honest picture of what PR actually looks like in 2026.</p>
-
-        <h3>What is Permanent Residency?</h3>
-        <p>PR allows you to live, work, and study in Australia indefinitely — with no visa renewals and no expiry dates. You gain access to Medicare, the right to sponsor eligible family members, and after meeting residency requirements, the pathway to Australian citizenship.</p>
-
-        <h3>The Main PR Pathways in 2026</h3>
-        <p><strong>1. Skilled Independent — Subclass 189</strong><br>No employer or state sponsor required. Applications are submitted through SkillSelect based on a points score. A minimum of 65 points is required, though most successful applicants score 80 or above.</p>
-
-        <p><strong>2. Skilled Nominated — Subclass 190</strong><br>A state or territory nominates you, adding 5 points to your score. Generally more accessible than the 189, with a commitment to residing in the nominating state for a minimum of two years.</p>
-
-        <p><strong>3. Employer Sponsored — Subclass 482 to 186</strong><br>Your employer sponsors you on a temporary skilled visa first. After two years of employment, you become eligible to apply for permanent residency.</p>
-
-        <p><strong>4. Student Visa to PR</strong><br>Study in Australia, graduate, transition to a graduate visa, secure skilled employment, then apply for a skilled migration visa. A well-established pathway for thousands every year.</p>
-
-        <h3>How the Points Test Works</h3>
-        <ul>
-          <li>Age 25 to 32 years: 30 points</li>
-          <li>Superior English proficiency: 20 points</li>
-          <li>Australian skilled work experience: up to 20 points</li>
-          <li>Bachelor, Masters or Doctorate degree: 15 to 20 points</li>
-          <li>Study in regional Australia: 5 points</li>
-          <li>Single applicant: 10 points</li>
-        </ul>
-
-        <h3>Our Advice</h3>
-        <p>No two cases are the same. Book a free 30-minute consultation with our team — so we can assess your individual circumstances and map out the most realistic pathway forward.</p>
-
-      </div>
-      <div class="flip-hint">&larr; Tap to flip back</div>
-    </div>
-
-  </div>
-</div>
     <div class="blog-card flip-card" onclick="this.classList.toggle('flipped')" style="min-height:480px;">
-  <div class="flip-card-inner" style="min-height:480px;">
-
-    <!-- FRONT -->
-    <div class="flip-front">
-      <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=90&fit=crop'); background-size: cover; background-position: center;"></div>
-      <div class="blog-body">
-        <span class="blog-tag">Student Visas</span>
-        <div class="blog-title">Student Visa to PR — Is It Possible?</div>
-        <div class="blog-excerpt">The pathway thousands of Indian students take every year — and how to make it work for you.</div>
-        <div class="blog-meta">By JRM Team &middot; 5 min read &middot; <span style="color:var(--teal);font-weight:600;">Tap to read &rarr;</span></div>
+      <div class="flip-card-inner" style="min-height:480px;">
+        <div class="flip-front">
+          <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=90&fit=crop'); background-size: cover; background-position: center;"></div>
+          <div class="blog-body">
+            <span class="blog-tag">Student Visas</span>
+            <div class="blog-title">Student Visa to PR — Is It Possible?</div>
+            <div class="blog-excerpt">The pathway thousands of Indian students take every year — and how to make it work for you.</div>
+            <div class="blog-meta">By JRM Team &middot; 5 min read &middot; <span style="color:var(--teal);font-weight:600;">Tap to read &rarr;</span></div>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-tag">Student Visas</div>
+          <div class="flip-back-title">Student Visa to PR — Is It Possible?</div>
+          <div class="flip-back-body">
+            <p>Every year, thousands of Indian students arrive in Australia with a dream — not just to study, but to build a life here. The good news is that the pathway from student visa to permanent residency is real, achievable, and well-travelled.</p>
+            <h3>Step 1 — Student Visa (Subclass 500)</h3>
+            <p>Everything begins with your student visa. You enrol in a registered course, meet the genuine temporary entrant requirement, and demonstrate sufficient funds.</p>
+            <h3>Step 2 — Graduate Temporary Visa (Subclass 485)</h3>
+            <p>After graduation, most international students qualify for the Temporary Graduate visa — giving you 2 to 6 years to live and work in Australia.</p>
+            <h3>Step 3 — Build Your Points and Skills</h3>
+            <p>Work in your nominated occupation, improve your English score, and accumulate Australian work experience — all of which add points toward a skilled visa.</p>
+            <h3>Step 4 — Apply for a Skilled Visa</h3>
+            <p>With enough points, you submit an Expression of Interest through SkillSelect. When invited, you apply for either the Subclass 189 or 190 — both lead directly to permanent residency.</p>
+          </div>
+          <div class="flip-hint">&larr; Tap to flip back</div>
+        </div>
       </div>
     </div>
-
-    <!-- BACK -->
-    <div class="flip-back">
-      <div class="flip-back-tag">Student Visas</div>
-      <div class="flip-back-title">Student Visa to PR — Is It Possible?</div>
-      <div class="flip-back-body">
-
-        <p>Every year, thousands of Indian students arrive in Australia with a dream — not just to study, but to build a life here. The good news is that the pathway from student visa to permanent residency is real, achievable, and well-travelled.</p>
-
-        <p>At JRM Migration, we have helped many students understand exactly how this journey works. Here is what you need to know.</p>
-
-        <h3>Step 1 — Student Visa (Subclass 500)</h3>
-        <p>Everything begins with your student visa. You enrol in a registered course, meet the genuine temporary entrant requirement, and demonstrate sufficient funds. Once approved, you study, work part-time, and begin building your life in Australia.</p>
-
-        <h3>Step 2 — Graduate Temporary Visa (Subclass 485)</h3>
-        <p>After graduation, most international students qualify for the Temporary Graduate visa. This gives you 2 to 6 years to live and work in Australia — depending on your qualification and where you studied.</p>
-
-        <h3>Step 3 — Build Your Points and Skills</h3>
-        <p>While on your graduate visa, this is your most important window. Work in your nominated occupation, improve your English score, and accumulate Australian work experience — all of which add points toward a skilled visa.</p>
-
-        <h3>Step 4 — Apply for a Skilled Visa</h3>
-        <p>With enough points and an occupation on the skilled list, you submit an Expression of Interest through SkillSelect. When invited, you apply for either the Subclass 189 or Subclass 190 — both lead directly to permanent residency.</p>
-
-        <h3>Our Honest Advice</h3>
-        <p>The student to PR pathway takes planning — the right course, the right occupation, the right location. Starting early makes all the difference. Book a free consultation with our team and we will map out your personal pathway from day one.</p>
-
-      </div>
-      <div class="flip-hint">&larr; Tap to flip back</div>
-    </div>
-
-  </div>
-</div>
     <div class="blog-card flip-card" onclick="this.classList.toggle('flipped')" style="min-height:480px;">
-  <div class="flip-card-inner" style="min-height:480px;">
-
-    <!-- FRONT -->
-    <div class="flip-front">
-      <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=90&fit=crop'); background-size: cover; background-position: center;"></div>
-      <div class="blog-body">
-        <span class="blog-tag">Visa Tips</span>
-        <div class="blog-title">5 Mistakes That Get Visa Applications Refused</div>
-        <div class="blog-excerpt">The most common errors that cost people their visa — and how to avoid every single one.</div>
-        <div class="blog-meta">By JRM Team &middot; 4 min read &middot; <span style="color:var(--teal);font-weight:600;">Tap to read &rarr;</span></div>
+      <div class="flip-card-inner" style="min-height:480px;">
+        <div class="flip-front">
+          <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=90&fit=crop'); background-size: cover; background-position: center;"></div>
+          <div class="blog-body">
+            <span class="blog-tag">Visa Tips</span>
+            <div class="blog-title">5 Mistakes That Get Visa Applications Refused</div>
+            <div class="blog-excerpt">The most common errors that cost people their visa — and how to avoid every single one.</div>
+            <div class="blog-meta">By JRM Team &middot; 4 min read &middot; <span style="color:var(--teal);font-weight:600;">Tap to read &rarr;</span></div>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-tag">Visa Tips</div>
+          <div class="flip-back-title">5 Mistakes That Get Visa Applications Refused</div>
+          <div class="flip-back-body">
+            <p>Visa refusals are more common than people think — and most of them are avoidable.</p>
+            <h3>Mistake 1 — Incomplete or Incorrect Documents</h3>
+            <p>Missing a single document or submitting an outdated version can lead to an immediate refusal.</p>
+            <h3>Mistake 2 — Poor English Test Scores</h3>
+            <p>A difference of one band can mean 10 fewer points — which could determine whether you receive an invitation at all.</p>
+            <h3>Mistake 3 — Incorrect Occupation or Skills Assessment</h3>
+            <p>Choosing the wrong ANZSCO occupation code can invalidate your entire application.</p>
+            <h3>Mistake 4 — Not Disclosing Previous Visa Refusals</h3>
+            <p>Failing to disclose a previous refusal — even from another country — can result in a permanent ban.</p>
+            <h3>Mistake 5 — Using an Unregistered Migration Agent</h3>
+            <p>In Australia, only MARA registered agents are legally allowed to provide migration advice. Always check the MARA register before engaging anyone.</p>
+          </div>
+          <div class="flip-hint">&larr; Tap to flip back</div>
+        </div>
       </div>
     </div>
-
-    <!-- BACK -->
-    <div class="flip-back">
-      <div class="flip-back-tag">Visa Tips</div>
-      <div class="flip-back-title">5 Mistakes That Get Visa Applications Refused</div>
-      <div class="flip-back-body">
-
-        <p>Visa refusals are more common than people think — and the hardest part is that most of them are avoidable. At JRM Migration, we review applications every day and we see the same mistakes coming up again and again.</p>
-
-        <h3>Mistake 1 — Incomplete or Incorrect Documents</h3>
-        <p>Missing a single document or submitting an outdated version can lead to an immediate refusal. Every visa has a specific checklist — and every document must be current, certified, and in the correct format.</p>
-
-        <h3>Mistake 2 — Poor English Test Scores</h3>
-        <p>Many applicants underestimate how important IELTS or PTE scores are. A difference of one band can mean 10 fewer points — which could determine whether you receive an invitation at all.</p>
-
-        <h3>Mistake 3 — Incorrect Occupation or Skills Assessment</h3>
-        <p>Choosing the wrong ANZSCO occupation code, or using the wrong assessing authority, can invalidate your entire application. This is one of the most technical aspects of migration — and where professional guidance makes the biggest difference.</p>
-
-        <h3>Mistake 4 — Not Disclosing Previous Visa Refusals</h3>
-        <p>Australian immigration authorities have access to your full visa history. Failing to disclose a previous refusal — even from another country — is considered a serious character issue and can result in a permanent ban.</p>
-
-        <h3>Mistake 5 — Using an Unregistered Migration Agent</h3>
-        <p>In Australia, only MARA registered agents are legally allowed to provide migration advice. Always check the MARA register before engaging anyone.</p>
-
-        <h3>Our Advice</h3>
-        <p>Every one of these mistakes is completely avoidable with the right support. Book a free consultation with our team — we will make sure your application gives you the best possible chance of success.</p>
-
-      </div>
-      <div class="flip-hint">&larr; Tap to flip back</div>
-    </div>
-
-  </div>
-</div>
   </div>
 </section>
 
+<!-- INSTAGRAM -->
 <section style="background:#0C447C; padding:80px;">
   <div style="text-align:center; margin-bottom:40px;">
     <div style="font-size:11px; font-weight:600; color:#25c491; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:14px;">— Follow Our Journey —</div>
@@ -804,25 +895,23 @@
     <a href="https://www.instagram.com/jrmmigration" target="_blank" style="background:#1D9E75; color:white; padding:12px 28px; border-radius:50px; font-size:14px; font-weight:600; text-decoration:none;">📸 Follow @jrmmigration</a>
   </div>
   <behold-widget feed-id="bY6Fpag7RP5ustxPyhjt"></behold-widget>
-<style>
-behold-widget::part(footer) { display: none !important; }
-.behold-widget-footer { display: none !important; }
-[class*="behold"][class*="footer"] { display: none !important; }
-behold-widget::part(branding) { display: none !important; }
-behold-widget::part(powered-by) { display: none !important; }
-.behold-powered-by { display: none !important; }
-div[class*="PoweredBy"] { display: none !important; }
-div[class*="powered"] { display: none !important; }
-div[class*="branding"] { display: none !important; }
-</style>
+  <style>
+    behold-widget::part(footer) { display: none !important; }
+    .behold-widget-footer { display: none !important; }
+    [class*="behold"][class*="footer"] { display: none !important; }
+    behold-widget::part(branding) { display: none !important; }
+    behold-widget::part(powered-by) { display: none !important; }
+    .behold-powered-by { display: none !important; }
+    div[class*="PoweredBy"] { display: none !important; }
+    div[class*="powered"] { display: none !important; }
+    div[class*="branding"] { display: none !important; }
+  </style>
   <script>
-    (() => {
-      const d=document,s=d.createElement("script");s.type="module";
-      s.src="https://w.behold.so/widget.js";d.head.append(s);
-    })();
+    (() => { const d=document,s=d.createElement("script");s.type="module";s.src="https://w.behold.so/widget.js";d.head.append(s); })();
   </script>
 </section>
-  <!-- CONTACT -->
+
+<!-- CONTACT -->
 <section id="contact">
   <div>
     <div class="section-eyebrow">Get in Touch</div>
@@ -834,8 +923,8 @@ div[class*="branding"] { display: none !important; }
       <div class="contact-item"><div class="contact-icon">📸</div><div><div class="contact-label">Instagram</div><div class="contact-value">@jrmmigration</div></div></div>
     </div>
     <div class="contact-offices">
-      <div class="office-card"><div class="office-flag">🇦🇺</div><div class="office-country">AUSTRALIA</div><div class="office-address">Contact US<br>Free Initial Consultation</div></div>
-      <div class="office-card"><div class="office-flag">🇮🇳</div><div class="office-country">INDIA</div><div class="office-address">Contact US<br>Free Initial Consultation</div></div>
+      <div class="office-card"><div class="office-flag">🇦🇺</div><div class="office-country">AUSTRALIA</div><div class="office-address">Migration Consultant<br>Online Consultations Available</div></div>
+      <div class="office-card"><div class="office-flag">🇮🇳</div><div class="office-country">INDIA</div><div class="office-address">India Office<br>In-Person Consultations Available</div></div>
     </div>
   </div>
   <form class="contact-form" action="https://formspree.io/f/xqenoydz" method="POST" onsubmit="submitForm(event)">
@@ -875,34 +964,42 @@ div[class*="branding"] { display: none !important; }
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
+    <a href="#faq">FAQ</a>
     <a href="#blog">Blog</a>
     <a href="#contact">Contact</a>
   </div>
   <div style="display:flex; flex-direction:column; align-items:flex-end; gap:12px;">
-  <div class="footer-social">
-    <a href="#" class="social-btn">📸</a>
-    <a href="#" class="social-btn">💼</a>
-    <a href="#" class="social-btn">📘</a>
-    <a href="#" class="social-btn">🎙️</a>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/jrmmigration" target="_blank" class="social-btn">📸</a>
+      <a href="#" class="social-btn">💼</a>
+      <a href="#" class="social-btn">📘</a>
+      <a href="#" class="social-btn">🎙️</a>
+    </div>
+    <div style="display:flex; gap:20px;">
+      <a href="https://www.mara.gov.au/tools-for-agents-subsite/Files/code-of-conduct-march-2022.pdf" target="_blank" style="color:#1D9E75; font-size:12px; text-decoration:none;">Code of Conduct (MARA)</a>
+      <a href="https://www.mara.gov.au/get-help-visa-subsite/FIles/consumer_guide_english.pdf" target="_blank" style="color:#1D9E75; font-size:12px; text-decoration:none;">Consumer Guide</a>
+    </div>
   </div>
-  <div style="display:flex; gap:20px;">
-    <a href="https://www.mara.gov.au/tools-for-agents-subsite/Files/code-of-conduct-march-2022.pdf" target="_blank" style="color:#1D9E75; font-size:12px; text-decoration:none;">Code of Conduct (MARA)</a>
-    <a href="https://www.mara.gov.au/get-help-visa-subsite/FIles/consumer_guide_english.pdf" target="_blank" style="color:#1D9E75; font-size:12px; text-decoration:none;">Consumer Guide</a>
-  </div>
-</div>
 </footer>
 
 <a href="https://wa.me/61402220634?text=Hi%20JRM%20Migration%2C%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank" class="floating-cta" style="background:#1D9E75; box-shadow:0 8px 30px rgba(29,158,117,0.5);">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.57a.75.75 0 00.906.919l5.857-1.53A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.953-1.355l-.355-.211-3.676.962.98-3.584-.232-.369A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
-WhatsApp Us
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.57a.75.75 0 00.906.919l5.857-1.53A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.953-1.355l-.355-.211-3.676.962.98-3.584-.232-.369A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+  WhatsApp Us
 </a>
+
+<div class="mobile-bottom-nav">
+  <a href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a>
+  <a href="#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span>Services</span></a>
+  <a href="https://wa.me/61402220634?text=Hi%20JRM%20Migration%2C%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank" class="nav-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.57a.75.75 0 00.906.919l5.857-1.53A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.953-1.355l-.355-.211-3.676.962.98-3.584-.232-.369A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg><span>Chat</span></a>
+  <a href="points-calculator.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg><span>Calculator</span></a>
+  <a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.14a16 16 0 006.29 6.29l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span>Contact</span></a>
+</div>
 
 <script>
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Mobile menu
 function showHamburger() {
   const btn = document.getElementById('menuBtn');
   if (btn) btn.style.display = window.innerWidth <= 768 ? 'flex' : 'none';
@@ -920,28 +1017,18 @@ document.getElementById('menuBtn').addEventListener('click', () => {
   btn.children[2].style.transform = isOpen ? 'rotate(-45deg) translate(5px, -5px)' : '';
   document.body.style.overflow = isOpen ? 'hidden' : '';
 });
-  
+
 async function submitForm(e) {
   e.preventDefault();
   const form = e.target;
   const btn = document.getElementById('submitBtn');
   btn.textContent = 'Sending...';
   btn.disabled = true;
-  const response = await fetch(form.action, {
-    method: 'POST',
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  });
-  if (response.ok) {
-    form.reset();
-    btn.textContent = '✅ Sent! We will be in touch within 24 hours.';
-    btn.style.background = '#0C447C';
-  } else {
-    btn.textContent = 'Something went wrong. Please try again.';
-    btn.disabled = false;
-  }
+  const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+  if (response.ok) { form.reset(); btn.textContent = '✅ Sent! We will be in touch within 24 hours.'; btn.style.background = '#0C447C'; }
+  else { btn.textContent = 'Something went wrong. Please try again.'; btn.disabled = false; }
 }
-  
+
 function closeMobileNav() {
   document.getElementById('mobileNav').classList.remove('open');
   document.getElementById('menuBtn').children[0].style.transform = '';
@@ -951,47 +1038,68 @@ function closeMobileNav() {
 }
 
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
 }, { threshold: 0.1 });
-
-document.querySelectorAll('.service-card, .blog-card, .process-step, .why-item, .value-item, .contact-item').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+document.querySelectorAll('.service-card, .blog-card, .process-step, .why-item, .value-item, .contact-item, .testimonial-card, .faq-item').forEach(el => {
+  el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
   observer.observe(el);
 });
 
-document.getElementById('submitBtn').addEventListener('click', function() {
-  this.textContent = '✅ Request Sent! Our Team will be in touch within 24 hours.';
-  this.style.background = '#0C447C';
-  setTimeout(() => { this.textContent = 'Book My Free Consultation →'; this.style.background = ''; }, 4000);
-});
+// FAQ
+function toggleFaq(el) {
+  const all = document.querySelectorAll('.faq-item');
+  all.forEach(i => { if (i !== el) i.classList.remove('open'); });
+  el.classList.toggle('open');
+}
+
+// QUIZ
+const answers = {};
+const results = {
+  pr: { visa: "Skilled Independent — Subclass 189 or 190", desc: "Based on your answers, a points-tested skilled migration visa looks like your best pathway. Your next step is a free consultation to check your points score and occupation eligibility." },
+  study: { visa: "Student Visa — Subclass 500", desc: "A Student Visa is the right starting point for you. We can help you understand the GTE requirement, course selection, and how studying in Australia can lead to PR later." },
+  visit: { visa: "Visitor Visa — Subclass 600 or Partner Visa", desc: "Depending on your relationship with the person you are visiting, either a Visitor Visa or a Partner Visa may be the right option. Let's talk through your specific situation." },
+  work: { visa: "Employer Sponsored — Subclass 482", desc: "With an Australian employer, a Skills in Demand visa (Subclass 482) is likely your best option — with a clear pathway to permanent residency through the Subclass 186." },
+  partner: { visa: "Partner Visa — Subclass 820/801", desc: "You may be eligible for an onshore Partner Visa. This is a two-stage visa — temporary first, then permanent. Let's review your relationship evidence and eligibility together." },
+  default: { visa: "Free Consultation Recommended", desc: "Your situation has some unique elements that are best discussed directly. Book a free 30-minute consultation and we'll map out your options in plain language." }
+};
+
+function answer(q, val) {
+  answers[q] = val;
+  document.getElementById('q'+q).classList.remove('active');
+  document.getElementById('dot'+q).classList.add('done');
+  const next = q + 1;
+  if (next < 4) {
+    document.getElementById('q'+next).classList.add('active');
+    if (document.getElementById('dot'+next)) document.getElementById('dot'+next).classList.add('done');
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  let key = 'default';
+  if (answers[1] === 'pr' && answers[2] === 'yes_skilled') key = 'pr';
+  else if (answers[1] === 'study') key = 'study';
+  else if (answers[1] === 'visit') key = 'visit';
+  else if (answers[0] === 'employer' || answers[1] === 'work') key = 'work';
+  else if (answers[3] === 'partner_au') key = 'partner';
+  document.getElementById('result-visa').textContent = results[key].visa;
+  document.getElementById('result-desc').textContent = results[key].desc;
+  document.getElementById('qresult').classList.add('active');
+}
+
+function restartQuiz() {
+  for (let i = 0; i < 4; i++) {
+    const step = document.getElementById('q'+i);
+    if (step) { step.classList.remove('active'); step.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected')); }
+    const dot = document.getElementById('dot'+i);
+    if (dot) dot.classList.remove('done');
+  }
+  document.getElementById('qresult').classList.remove('active');
+  document.getElementById('q0').classList.add('active');
+  document.getElementById('dot0').classList.add('done');
+  Object.keys(answers).forEach(k => delete answers[k]);
+}
 </script>
-<div class="mobile-bottom-nav">
-  <a href="#home">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    <span>Home</span>
-  </a>
-  <a href="#services">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-    <span>Services</span>
-  </a>
-  <a href="https://wa.me/61402220634?text=Hi%20JRM%20Migration%2C%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank" class="nav-whatsapp">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.57a.75.75 0 00.906.919l5.857-1.53A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 01-4.953-1.355l-.355-.211-3.676.962.98-3.584-.232-.369A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
-    <span>Chat</span>
-  </a>
-  <a href="points-calculator.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
-    <span>Points Calculator</span>
-  </a>
-  <a href="#contact">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.14a16 16 0 006.29 6.29l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-    <span>Contact</span>
-  </a>
-</div></body>
+</body>
 </html>
